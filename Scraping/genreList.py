@@ -21,9 +21,9 @@ genreTags = list(set([i['href'] for i in aTagList]))
 genres = {i.string:i['href'] for i in aTagList if i.string != None}
 
 #JSON dump files
-gL = open('/root/Desktop/GDG/PIP_GUI/Resource_Files/genreListFile.j', 'w')
-gT = open('/root/Desktop/GDG/PIP_GUI/Resource_Files/genreTagFile.j', 'w')
-g = open('/root/Desktop/GDG/PIP_GUI/Resource_Files/genreFile.j', 'w')
+gL = open('/root/Desktop/GDG/PIP_GUI/Resource_Files/genreListFile.json', 'w')
+gT = open('/root/Desktop/GDG/PIP_GUI/Resource_Files/genreTagFile.json', 'w')
+g = open('/root/Desktop/GDG/PIP_GUI/Resource_Files/genreFile.json', 'w')
 
 json.dump(genreList, gL)
 json.dump(genreTags, gT)
