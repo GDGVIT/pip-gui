@@ -54,7 +54,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QRadioButton" name="radioButton_2">
+      <widget class="QRadioButton" name="radioInstall">
        <property name="text">
         <string>Install new packages</string>
        </property>
@@ -74,7 +74,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QRadioButton" name="radioButton">
+      <widget class="QRadioButton" name="radioUpdate">
        <property name="text">
         <string>Update existing packages</string>
        </property>
@@ -94,7 +94,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QRadioButton" name="radioButton_3">
+      <widget class="QRadioButton" name="radioUninstall">
        <property name="text">
         <string>Uninstall existing packages</string>
        </property>
@@ -113,14 +113,14 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="btnNext">
        <property name="text">
         <string>Next</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="btnExit">
        <property name="text">
         <string>Exit</string>
        </property>
@@ -148,6 +148,7 @@
     <property name="title">
      <string>About</string>
     </property>
+    <addaction name="actionPIP_GUI"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuAbout"/>
@@ -156,6 +157,11 @@
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionPIP_GUI">
+   <property name="text">
+    <string>PIP GUI</string>
    </property>
   </action>
  </widget>
