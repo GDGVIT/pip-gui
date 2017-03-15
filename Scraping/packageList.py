@@ -6,16 +6,16 @@ def indices(string, substring):
     return [string.find(substring), string.find(substring) + string[string.find(substring) + 1:].find(substring)]
 
 #Source Code File
-file = open('/root/Desktop/GDG/PIP_GUI/Resource_Files/db.txt')
+file = open('../Resource_Files/db.txt')
 src = str(file.read())
 file.close()
 
 #List of all Genres and their 'a' tag HREF values
-genreList = json.load(open('/root/Desktop/GDG/PIP_GUI/Resource_Files/genreListFile.json'))
-genreTags = json.load(open('/root/Desktop/GDG/PIP_GUI/Resource_Files/genreTagFile.json'))
+genreList = json.load(open('../Resource_Files/genreListFile.json'))
+genreTags = json.load(open('../Resource_Files/genreTagFile.json'))
 
 #Genre and HREF value dictionary
-genres = json.load(open('/root/Desktop/GDG/PIP_GUI/Resource_Files/genreFile.json'))
+genres = json.load(open('../Resource_Files/genreFile.json'))
 
 #Tag values and their indices
 indexDict = {i:max(indices(src, i)) for i in genreTags}
@@ -28,6 +28,6 @@ def substr(string, start, tag='ul'):
 #Dictionary of genre tags with all relative packages
 packageDict = {i:substr(src, indexDict[i]) for i in genreTags}
 
-json.dump(packageDict, open('/root/Desktop/GDG/PIP_GUI/Resource_Files/packageDictFile.json', 'w'))
+json.dump(packageDict, open('../Resource_Files/packageDictFile.json', 'w'))
 
-k = json.load(open('/root/Desktop/GDG/PIP_GUI/Resource_Files/packageDictFile.json'))
+k = json.load(open('../Resource_Files/packageDictFile.json'))
