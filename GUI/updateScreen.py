@@ -28,6 +28,7 @@ class Ui_Form(object):
         Form.resize(427, 456)
         self.listWidget = QtGui.QListWidget(Form)
         self.listWidget.setGeometry(QtCore.QRect(10, 60, 261, 381))
+        self.listWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
         self.listWidget.setObjectName(_fromUtf8("listWidget"))
         self.verticalLayoutWidget = QtGui.QWidget(Form)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(290, 60, 121, 98))
@@ -59,14 +60,4 @@ class Ui_Form(object):
         self.btnUpdateAll.setText(_translate("Form", "Update All", None))
         self.btnBack.setText(_translate("Form", "Go Back", None))
         self.label.setText(_translate("Form", "Please select the packages you want to update:", None))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    Form = QtGui.QWidget()
-    ui = Ui_Form()
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec_())
 

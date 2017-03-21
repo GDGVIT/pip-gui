@@ -38,11 +38,37 @@ class MainWindow(startScreen.Ui_mainWindow, QtGui.QMainWindow):
 
 
 class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
+    outdatedPackages = json.load(open('Resource_Files/outdatedPackageList.json'))
+    selectedList = list()
+
     def __init__(self):
         super(UpdateWindow, self).__init__()
         self.setupUi(self)
 
         self.btnBack.clicked.connect(self.backFn)
+        self.btnUpdateAll.clicked.connect(self.updateAllFn)
+        self.btnUpdate.clicked.connect(self.updateFn)
+
+        global outdatedPackages
+        for i in self.outdatedPackages:
+            self.item = QtGui.QListWidgetItem(i)
+            self.listWidget.addItem(self.item)
+
+    def updateFn(self):
+        items = self.listWidget.selectedItems()
+        global selectedList
+        for i in items:
+            k = str(i.text())
+            if k not in self.selectedList:
+                self.selectedList.append(k)
+        print self.selectedList
+
+    def updateAllFn(self):
+        import os
+        os.system('pip freeze > requirements.txt ')
+        os.system('pip install -r requirements.txt -U')
+        from Package_Management import outdatedList
+        print 'All Packages Updated.'
 
     def backFn(self):
         self.close()
@@ -51,17 +77,36 @@ class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
 
 
 class UninstallWindow(QtGui.QMainWindow, uninstallScreen.Ui_Form):
-    #try:
-    #    from Package_Management import installedList
-    #    self.allPackages = json.load(open('Resource_Files/installedPackageList.json'))
-    #except:
-    #    self.allPackages = json.load(open('Resource_Files/installedPackageList.json'))
+    allPackages = json.load(open('Resource_Files/installedPackageList.json'))
+    selectedList = list()
 
     def __init__(self):
         super(UninstallWindow, self).__init__()
         self.setupUi(self)
 
         self.btnBack.clicked.connect(self.backFn)
+        self.btnUninstallAll.clicked.connect(self.uninstallAllFn)
+        self.btnUninstall.clicked.connect(self.uninstallFn)
+
+        global allPackages
+        for i in self.allPackages:
+            self.item = QtGui.QListWidgetItem(i)
+            self.listWidget.addItem(self.item)
+
+    def uninstallFn(self):
+        items = self.listWidget.selectedItems()
+        global selectedList
+        for i in items:
+            k = str(i.text())
+            if k not in self.selectedList:
+                self.selectedList.append(k)
+        print self.selectedList
+
+    def uninstallAllFn(self):
+        import os
+        os.system('pip freeze > requirements.txt ')
+        os.system('pip uninstall -r requirements.txt -U')
+        print 'All Packages Uninstalled.'
 
     def backFn(self):
         self.close()

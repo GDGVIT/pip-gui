@@ -40,6 +40,9 @@
      <height>381</height>
     </rect>
    </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::MultiSelection</enum>
+   </property>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
@@ -59,7 +62,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="btnUninstallAl">
+     <widget class="QPushButton" name="btnUninstallAll">
       <property name="text">
        <string>Uninstall All</string>
       </property>

@@ -34,6 +34,7 @@ class Ui_Form(object):
         self.label.setObjectName(_fromUtf8("label"))
         self.listWidget = QtGui.QListWidget(Form)
         self.listWidget.setGeometry(QtCore.QRect(10, 60, 261, 381))
+        self.listWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
         self.listWidget.setObjectName(_fromUtf8("listWidget"))
         self.verticalLayoutWidget = QtGui.QWidget(Form)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(290, 60, 121, 98))
@@ -43,9 +44,9 @@ class Ui_Form(object):
         self.btnUninstall = QtGui.QPushButton(self.verticalLayoutWidget)
         self.btnUninstall.setObjectName(_fromUtf8("btnUninstall"))
         self.verticalLayout.addWidget(self.btnUninstall)
-        self.btnUninstallAl = QtGui.QPushButton(self.verticalLayoutWidget)
-        self.btnUninstallAl.setObjectName(_fromUtf8("btnUninstallAl"))
-        self.verticalLayout.addWidget(self.btnUninstallAl)
+        self.btnUninstallAll = QtGui.QPushButton(self.verticalLayoutWidget)
+        self.btnUninstallAll.setObjectName(_fromUtf8("btnUninstallAll"))
+        self.verticalLayout.addWidget(self.btnUninstallAll)
         self.btnBack = QtGui.QPushButton(self.verticalLayoutWidget)
         self.btnBack.setObjectName(_fromUtf8("btnBack"))
         self.verticalLayout.addWidget(self.btnBack)
@@ -57,16 +58,6 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Uninstall Packages", None))
         self.label.setText(_translate("Form", "Please select the packages you want to uninstall:", None))
         self.btnUninstall.setText(_translate("Form", "Uninstall", None))
-        self.btnUninstallAl.setText(_translate("Form", "Uninstall All", None))
+        self.btnUninstallAll.setText(_translate("Form", "Uninstall All", None))
         self.btnBack.setText(_translate("Form", "Go Back", None))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    Form = QtGui.QWidget()
-    ui = Ui_Form()
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec_())
 
