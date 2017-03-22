@@ -61,14 +61,25 @@ class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
             k = str(i.text())
             if k not in self.selectedList:
                 self.selectedList.append(k)
-        print self.selectedList
+        import os
+        for i in self.selectedList:
+            os.system('pip install ' + i + ' -U')
+            self.outdatedPackages.remove(i)
+        print 'Selected Packages Updated'
+        json.dump(self.outdatedPackages, open('Resource_Files/outdatedPackageList.json', 'w'))
+        self.close()
+        self.update = UpdateWindow()
+        self.update.show()
 
     def updateAllFn(self):
         import os
-        os.system('pip freeze > requirements.txt ')
-        os.system('pip install -r requirements.txt -U')
-        from Package_Management import outdatedList
+        for i in self.outdatedPackages:
+            os.system('pip uninstall ' + i + ' -y')
         print 'All Packages Updated.'
+        json.dump([], open('Resource_Files/outdatedPackageList.json', 'w'))
+        self.close()
+        self.update = UpdateWindow()
+        self.update.show()
 
     def backFn(self):
         self.close()
@@ -88,12 +99,13 @@ class UninstallWindow(QtGui.QMainWindow, uninstallScreen.Ui_Form):
         self.btnUninstallAll.clicked.connect(self.uninstallAllFn)
         self.btnUninstall.clicked.connect(self.uninstallFn)
 
-        global allPackages
+        # global allPackages
         for i in self.allPackages:
             self.item = QtGui.QListWidgetItem(i)
             self.listWidget.addItem(self.item)
 
     def uninstallFn(self):
+        # global allPackages
         items = self.listWidget.selectedItems()
         global selectedList
         for i in items:
@@ -101,12 +113,25 @@ class UninstallWindow(QtGui.QMainWindow, uninstallScreen.Ui_Form):
             if k not in self.selectedList:
                 self.selectedList.append(k)
         print self.selectedList
+        import os
+        for i in self.selectedList:
+            os.system('pip uninstall ' + i + ' -y')
+            self.allPackages.remove(i)
+        print 'Selected Packages Uninstalled'
+        json.dump(self.allPackages, open('Resource_Files/installedPackageList.json', 'w'))
+        self.close()
+        self.uninstall = UninstallWindow()
+        self.uninstall.show()
 
     def uninstallAllFn(self):
         import os
         os.system('pip freeze > requirements.txt ')
-        os.system('pip uninstall -r requirements.txt -U')
+        os.system('pip uninstall -r requirements.txt')
         print 'All Packages Uninstalled.'
+        json.dump([], open('Resource_Files/installedPackageList.json', 'w'))
+        self.close()
+        self.uninstall = UninstallWindow()
+        self.uninstall.show()
 
     def backFn(self):
         self.close()
