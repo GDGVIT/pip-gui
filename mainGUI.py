@@ -114,6 +114,8 @@ class UninstallWindow(QtGui.QMainWindow, uninstallScreen.Ui_Form):
                 self.selectedList.append(k)
         print self.selectedList
         import os
+        self.uninstall.show()
+
         for i in self.selectedList:
             os.system('pip uninstall ' + i + ' -y')
             self.allPackages.remove(i)
@@ -140,14 +142,44 @@ class UninstallWindow(QtGui.QMainWindow, uninstallScreen.Ui_Form):
 
 
 class InstallWindow(QtGui.QMainWindow, installScreen.Ui_Form):
+    packages = json.load(open('Resource_Files/packageList.json'))
+    matchedList = list()
+    selectedList = list()
+    searchStr = str()
+
     def __init__(self):
         super(InstallWindow, self).__init__()
         self.setupUi(self)
 
         self.btnBack.clicked.connect(self.backFn)
+        self.btnInstall.clicked.connect(self.installFn)
+        self.packageInput.textChanged.connect(self.textChange)
+
+    def textChange(self, i):
+        self.matchedList = list()
+        self.searchStr = i
+        self.listWidget.clear()
+        for i in self.packages:
+            if self.searchStr in i:
+                self.matchedList.append(i)
+        for i in self.matchedList:
+            self.item = QtGui.QListWidgetItem(i)
+            self.listWidget.addItem(self.item)
 
     def installFn(self):
-        pass
+        items = self.listWidget.selectedItems()
+        global selectedList
+        for i in items:
+            k = str(i.text())
+            if k not in self.selectedList:
+                self.selectedList.append(k)
+        import os
+        for i in self.selectedList:
+            os.system('pip install ' + i)
+        print 'Selected Packages Installed'
+        self.close()
+        self.install = InstallWindow()
+        self.install.show()
     def backFn(self):
         self.close()
         self.window = MainWindow()
