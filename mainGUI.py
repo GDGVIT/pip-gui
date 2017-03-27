@@ -74,7 +74,7 @@ class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
     def updateAllFn(self):
         import os
         for i in self.outdatedPackages:
-            os.system('pip uninstall ' + i + ' -y')
+            os.system('pip install ' + i + ' -U')
         print 'All Packages Updated.'
         json.dump([], open('Resource_Files/outdatedPackageList.json', 'w'))
         self.close()
@@ -146,6 +146,8 @@ class InstallWindow(QtGui.QMainWindow, installScreen.Ui_Form):
 
         self.btnBack.clicked.connect(self.backFn)
 
+    def installFn(self):
+        pass
     def backFn(self):
         self.close()
         self.window = MainWindow()
