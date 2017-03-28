@@ -1,5 +1,3 @@
-#Python 2.x
-
 from commands import getoutput
 import json
 

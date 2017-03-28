@@ -1,9 +1,9 @@
-from urllib.request import urlopen
+from urllib import urlopen
 import json
 from bs4 import BeautifulSoup
 
 source = urlopen('https://pypi.python.org/simple/').read()
-soup = BeautifulSoup(source)
+soup = BeautifulSoup(source, 'lxml')
 
 l = list()
 

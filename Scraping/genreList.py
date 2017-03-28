@@ -7,7 +7,7 @@ genrePattern = re.compile(r'#[\w-]+')
 
 #Source Code File
 file = open('Resource_Files/db.txt')
-src = BeautifulSoup(file.read(), 'html.parser')
+src = BeautifulSoup(file.read(), 'lxml')
 
 #List of all genre 'a' tags
 aTagList = [i for i in src.find_all('a') if re.match(genrePattern, i['href'])]

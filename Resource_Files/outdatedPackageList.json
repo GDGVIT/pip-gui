@@ -1,1 +1,1 @@
-[]
+["beautifulsoup4", "Flask", "h2", "hyperframe", "keyrings.alt", "mitmproxy", "mysqlclient", "paramiko", "pcapy", "Pillow", "pluginbase", "prompt-toolkit", "psutil", "PyGithub", "pylibemu", "pyscard", "pysmi", "pysnmp", "pysqlite", "PyX", "setuptools", "SQLAlchemy", "tblib", "typing"]

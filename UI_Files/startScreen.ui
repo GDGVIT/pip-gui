@@ -142,16 +142,10 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionRefresh"/>
     <addaction name="actionExit"/>
    </widget>
-   <widget class="QMenu" name="menuAbout">
-    <property name="title">
-     <string>About</string>
-    </property>
-    <addaction name="actionPIP_GUI"/>
-   </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionExit">
@@ -162,6 +156,11 @@
   <action name="actionPIP_GUI">
    <property name="text">
     <string>PIP GUI</string>
+   </property>
+  </action>
+  <action name="actionRefresh">
+   <property name="text">
+    <string>Refresh Lists</string>
    </property>
   </action>
  </widget>
