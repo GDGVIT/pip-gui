@@ -73,6 +73,7 @@ class MainWindow(startScreen.Ui_mainWindow, QtGui.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
+        self.setWindowIcon(QtGui.QIcon('Resource_Files/googledev.png'))
         #Quiting the Application
         self.btnExit.clicked.connect(self.endApp)
         self.btnExit.setToolTip('Exit Application')
@@ -93,7 +94,7 @@ class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
     def __init__(self):
         super(UpdateWindow, self).__init__()
         self.setupUi(self)
-
+        self.setWindowIcon(QtGui.QIcon('Resource_Files/googledev.png'))
         self.outdatedPackages = json.load(open('Resource_Files/outdatedPackageList.json'))
         self.selectedList = list()
 
@@ -151,7 +152,7 @@ class UninstallWindow(QtGui.QMainWindow, uninstallScreen.Ui_Form):
     def __init__(self):
         super(UninstallWindow, self).__init__()
         self.setupUi(self)
-
+        self.setWindowIcon(QtGui.QIcon('Resource_Files/googledev.png'))
         self.allPackages = json.load(open('Resource_Files/installedPackageList.json'))
 
         self.btnBack.clicked.connect(self.backFn)
@@ -216,7 +217,7 @@ class InstallWindow(QtGui.QMainWindow, installScreen.Ui_Form):
     def __init__(self):
         super(InstallWindow, self).__init__()
         self.setupUi(self)
-
+        self.setWindowIcon(QtGui.QIcon('Resource_Files/googledev.png'))
         self.offlinePackages = json.load(open('Resource_Files/installedPackageList.json'))
         self.packages = json.load(open('Resource_Files/packageList.json'))
         self.matchedList = list()
