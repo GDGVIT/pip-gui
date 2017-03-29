@@ -6,6 +6,36 @@ import json
 #Importing GUIs
 from GUI import startScreen, uninstallScreen, updateScreen, installScreen
 #from Scraping import genreList, packageList
+Yes = QtGui.QMessageBox.Yes
+def msgBox(x):
+    msg = QtGui.QMessageBox()
+    msg.setWindowTitle("Status Window")
+    msg.setIcon(QtGui.QMessageBox.Information)
+
+    if x == 1:
+        msg.setText("Selected Packages have been installed.")
+        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+    if x ==2:
+        msg.setText('Selected Packages have been upgraded.')
+        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+    if x == 3:
+        msg.setText('Are you sure you wanna uninstall?')
+        msg.setIcon(QtGui.QMessageBox.Question)
+        msg.setStandardButtons(QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
+    if x == 4:
+        msg.setText('Uninstall Aborted.')
+        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+    if x == 5:
+        msg.setText('Selected Packages have been uninstalled.')
+        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+    if x ==6:
+        msg.setText('Lists Refreshed.')
+        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+    if x == 7:
+        msg.setText('Are you sure you wanna exit?')
+        msg.setIcon(QtGui.QMessageBox.Question)
+        msg.setStandardButtons(QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
+    return msg.exec_()
 
 class MainWindow(startScreen.Ui_mainWindow, QtGui.QMainWindow):
     def radioCheck(self):
@@ -26,18 +56,27 @@ class MainWindow(startScreen.Ui_mainWindow, QtGui.QMainWindow):
     def refreshLists(self):
         print "Refreshing Online Package List..."
         from Scraping import pypiList
-        print "Refreshing Installed Package List..."
+        print "\nRefreshing Installed Package List..."
         from Package_Management import installedList
-        print "Refreshing Outdated Package List..."
+        print "\nRefreshing Outdated Package List..."
         from Package_Management import outdatedList
+        msgBox(6)
+        self.close()
+        self.window = MainWindow()
+        self.window.show()
+
+    def endApp(self):
+        global Yes
+        if msgBox(7) == Yes:
+            app.quit()
 
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
         #Quiting the Application
-        self.btnExit.clicked.connect(app.quit)
+        self.btnExit.clicked.connect(self.endApp)
         self.btnExit.setToolTip('Exit Application')
-        self.actionExit.triggered.connect(app.quit)
+        self.actionExit.triggered.connect(self.endApp)
         self.actionExit.setStatusTip('Exit Application')
         self.actionExit.setShortcut('Ctrl+Q')
 
@@ -63,8 +102,12 @@ class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
         self.btnUpdate.clicked.connect(self.updateFn)
 
         global outdatedPackages
-        for i in self.outdatedPackages:
-            self.item = QtGui.QListWidgetItem(i)
+        if len(self.outdatedPackages):
+            for i in self.outdatedPackages:
+                self.item = QtGui.QListWidgetItem(i)
+                self.listWidget.addItem(self.item)
+        else:
+            self.item = QtGui.QListWidgetItem('=== No Outdated Packges ===')
             self.listWidget.addItem(self.item)
 
     def updateFn(self):
@@ -80,6 +123,7 @@ class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
             self.outdatedPackages.remove(i)
         print 'Selected Packages Updated'
         json.dump(self.outdatedPackages, open('Resource_Files/outdatedPackageList.json', 'w'))
+        msgBox(2)
         self.close()
         self.update = UpdateWindow()
         self.update.show()
@@ -90,6 +134,7 @@ class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
             os.system('pip install ' + i + ' -U')
         print 'All Packages Updated.'
         json.dump([], open('Resource_Files/outdatedPackageList.json', 'w'))
+        msgBox(2)
         self.close()
         self.update = UpdateWindow()
         self.update.show()
@@ -126,25 +171,35 @@ class UninstallWindow(QtGui.QMainWindow, uninstallScreen.Ui_Form):
             k = str(i.text())
             if k not in self.selectedList:
                 self.selectedList.append(k)
-        print self.selectedList
-        import os
-        for i in self.selectedList:
-            os.system('pip uninstall ' + i + ' -y')
-            if i in self.allPackages:
-                self.allPackages.remove(i)
-        print 'Selected Packages Uninstalled'
-        self.selectedList = list()
-        json.dump(self.allPackages, open('Resource_Files/installedPackageList.json', 'w'))
+        #print self.selectedList
+        global Yes
+        if msgBox(3) == Yes:
+            import os
+            for i in self.selectedList:
+                os.system('pip uninstall ' + i + ' -y')
+                if i in self.allPackages:
+                    self.allPackages.remove(i)
+            print 'Selected Packages Uninstalled'
+            self.selectedList = list()
+            json.dump(self.allPackages, open('Resource_Files/installedPackageList.json', 'w'))
+            msgBox(5)
+        else:
+            msgBox(4)
         self.close()
         self.uninstall = UninstallWindow()
         self.uninstall.show()
 
     def uninstallAllFn(self):
-        import os
-        os.system('pip freeze > requirements.txt ')
-        os.system('pip uninstall -r requirements.txt')
-        print 'All Packages Uninstalled.'
-        json.dump([], open('Resource_Files/installedPackageList.json', 'w'))
+        global Yes
+        if msgBox(3) == Yes:
+            import os
+            os.system('pip freeze > requirements.txt ')
+            os.system('pip uninstall -r requirements.txt')
+            print 'All Packages Uninstalled.'
+            json.dump([], open('Resource_Files/installedPackageList.json', 'w'))
+            msgBox(5)
+        else:
+            msgBox(4)
         self.close()
         self.uninstall = UninstallWindow()
         self.uninstall.show()
@@ -197,6 +252,7 @@ class InstallWindow(QtGui.QMainWindow, installScreen.Ui_Form):
                 self.offlinePackages.append(i)
         print 'Selected Packages Installed'
         json.dump(sorted(self.offlinePackages), open('Resource_Files/installedPackageList.json', 'w'))
+        msgBox(1)
         self.close()
         self.install = InstallWindow()
         self.install.show()
