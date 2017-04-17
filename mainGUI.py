@@ -1,11 +1,11 @@
 from PyQt4 import QtCore, QtGui
 import sys
 import json
-#sys.path.insert(0,'./GUI')
 
 #Importing GUIs
 from GUI import startScreen, uninstallScreen, updateScreen, installScreen
 #from Scraping import genreList, packageList
+
 Yes = QtGui.QMessageBox.Yes
 def msgBox(x):
     msg = QtGui.QMessageBox()
@@ -37,8 +37,23 @@ def msgBox(x):
         msg.setStandardButtons(QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
     return msg.exec_()
 
+version = 0 #0 is for py2 and 1 is for py3
+fileVersion = ''
+
 class MainWindow(startScreen.Ui_mainWindow, QtGui.QMainWindow):
+    ver = ''
+    def pythonVersion(self):
+        global version
+        global fileVersion
+        if self.radioPy2.isChecked():
+            version = 'pip'
+            fileVersion = 'List'
+        if self.radioPy3.isChecked():
+            version = 'pip3'
+            fileVersion = 'List3'
+
     def radioCheck(self):
+        self.pythonVersion() #Checking the version of python being used
         #Checking the radio button status
         if self.radioInstall.isChecked():
             self.close()
@@ -90,12 +105,14 @@ class MainWindow(startScreen.Ui_mainWindow, QtGui.QMainWindow):
 
 
 class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
-
+    global fileVersion
+    global version
+    ver = ''
     def __init__(self):
         super(UpdateWindow, self).__init__()
         self.setupUi(self)
         self.setWindowIcon(QtGui.QIcon('Resource_Files/googledev.png'))
-        self.outdatedPackages = json.load(open('Resource_Files/outdatedPackageList.json'))
+        self.outdatedPackages = json.load(open('Resource_Files/outdatedPackage' + fileVersion+ '.json'))
         self.selectedList = list()
 
         self.btnBack.clicked.connect(self.backFn)
@@ -114,16 +131,21 @@ class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
     def updateFn(self):
         items = self.listWidget.selectedItems()
         global selectedList
+        global version
+        if version == 0:
+            ver = 'pip'
+        elif version == 1:
+            ver = 'pip3'
         for i in items:
             k = str(i.text())
             if k not in self.selectedList:
                 self.selectedList.append(k)
         import os
         for i in self.selectedList:
-            os.system('pip install ' + i + ' -U')
+            os.system(version + ' install ' + i + ' -U')
             self.outdatedPackages.remove(i)
         print 'Selected Packages Updated'
-        json.dump(self.outdatedPackages, open('Resource_Files/outdatedPackageList.json', 'w'))
+        json.dump(self.outdatedPackages, open('Resource_Files/outdatedPackage' + fileVersion + '.json', 'w'))
         msgBox(2)
         self.close()
         self.update = UpdateWindow()
@@ -131,10 +153,15 @@ class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
 
     def updateAllFn(self):
         import os
+        global version
+        if version == 0:
+            ver = 'pip'
+        elif version == 1:
+            ver = 'pip3'
         for i in self.outdatedPackages:
-            os.system('pip install ' + i + ' -U')
+            os.system(version + ' install ' + i + ' -U')
         print 'All Packages Updated.'
-        json.dump([], open('Resource_Files/outdatedPackageList.json', 'w'))
+        json.dump([], open('Resource_Files/outdatedPackage' + fileVersion + '.json', 'w'))
         msgBox(2)
         self.close()
         self.update = UpdateWindow()
@@ -148,12 +175,14 @@ class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
 
 class UninstallWindow(QtGui.QMainWindow, uninstallScreen.Ui_Form):
     selectedList = list()
-
+    ver = ''
+    global fileVersion
+    global version
     def __init__(self):
         super(UninstallWindow, self).__init__()
         self.setupUi(self)
         self.setWindowIcon(QtGui.QIcon('Resource_Files/googledev.png'))
-        self.allPackages = json.load(open('Resource_Files/installedPackageList.json'))
+        self.allPackages = json.load(open('Resource_Files/installedPackage' + fileVersion + '.json'))
 
         self.btnBack.clicked.connect(self.backFn)
         self.btnUninstallAll.clicked.connect(self.uninstallAllFn)
@@ -174,15 +203,20 @@ class UninstallWindow(QtGui.QMainWindow, uninstallScreen.Ui_Form):
                 self.selectedList.append(k)
         #print self.selectedList
         global Yes
+        global version
+        if version == 0:
+            ver = 'pip'
+        elif version == 1:
+            ver = 'pip3'
         if msgBox(3) == Yes:
             import os
             for i in self.selectedList:
-                os.system('pip uninstall ' + i + ' -y')
+                os.system(version + ' uninstall ' + i + ' -y')
                 if i in self.allPackages:
                     self.allPackages.remove(i)
             print 'Selected Packages Uninstalled'
             self.selectedList = list()
-            json.dump(self.allPackages, open('Resource_Files/installedPackageList.json', 'w'))
+            json.dump(self.allPackages, open('Resource_Files/installedPackage' + fileVersion + '.json', 'w'))
             msgBox(5)
         else:
             msgBox(4)
@@ -192,12 +226,17 @@ class UninstallWindow(QtGui.QMainWindow, uninstallScreen.Ui_Form):
 
     def uninstallAllFn(self):
         global Yes
+        global version
+        if version == 0:
+            ver = 'pip'
+        elif version == 1:
+            ver = 'pip3'
         if msgBox(3) == Yes:
             import os
-            os.system('pip freeze > requirements.txt ')
-            os.system('pip uninstall -r requirements.txt')
+            os.system(version + ' freeze > requirements.txt ')
+            os.system(version + ' uninstall -r requirements.txt')
             print 'All Packages Uninstalled.'
-            json.dump([], open('Resource_Files/installedPackageList.json', 'w'))
+            json.dump([], open('Resource_Files/installedPackage' + fileVersion + '.json', 'w'))
             msgBox(5)
         else:
             msgBox(4)
@@ -212,14 +251,14 @@ class UninstallWindow(QtGui.QMainWindow, uninstallScreen.Ui_Form):
 
 
 class InstallWindow(QtGui.QMainWindow, installScreen.Ui_Form):
-
-
+    ver = ''
+    global fileVersion
     def __init__(self):
         super(InstallWindow, self).__init__()
         self.setupUi(self)
         self.setWindowIcon(QtGui.QIcon('Resource_Files/googledev.png'))
-        self.offlinePackages = json.load(open('Resource_Files/installedPackageList.json'))
-        self.packages = json.load(open('Resource_Files/packageList.json'))
+        self.offlinePackages = json.load(open('Resource_Files/installedPackage' + fileVersion + '.json'))
+        self.packages = json.load(open('Resource_Files/package' + fileVersion + '.json'))
         self.matchedList = list()
         self.selectedList = list()
         self.searchStr = str()
@@ -240,6 +279,11 @@ class InstallWindow(QtGui.QMainWindow, installScreen.Ui_Form):
             self.listWidget.addItem(self.item)
 
     def installFn(self):
+        global version
+        if version == 0:
+            ver = 'pip'
+        elif version == 1:
+            ver = 'pip3'
         items = self.listWidget.selectedItems()
         global selectedList
         for i in items:
@@ -248,11 +292,11 @@ class InstallWindow(QtGui.QMainWindow, installScreen.Ui_Form):
                 self.selectedList.append(k)
         import os
         for i in self.selectedList:
-            os.system('pip install ' + i)
+            os.system(version + ' install ' + i)
             if i not in self.offlinePackages:
                 self.offlinePackages.append(i)
         print 'Selected Packages Installed'
-        json.dump(sorted(self.offlinePackages), open('Resource_Files/installedPackageList.json', 'w'))
+        json.dump(sorted(self.offlinePackages), open('Resource_Files/installedPackage' + fileVersion + '.json', 'w'))
         msgBox(1)
         self.close()
         self.install = InstallWindow()
