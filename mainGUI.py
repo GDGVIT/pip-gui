@@ -44,7 +44,22 @@ class ProgressWindow(QtGui.QMainWindow, progressScreen.Ui_Form):
 
     def callProgram(self, ver, processList, x):
         self.msgInt = x
-        self.process.start(ver, processList)
+        if x == 1:
+            self.process.start(ver, processList)
+        if x == 2:
+            tempList = list()
+            tempList.append(processList[0])
+            for i in processList[1:]:
+                tempList.append(i)
+                tempList.append('-U')
+            self.process.start(ver, tempList)
+        if x == 5:
+            tempList = list()
+            tempList.append(processList[0])
+            for i in processList[1:]:
+                tempList.append(i)
+                tempList.append('-y')
+            self.process.start(ver, tempList)
 
 Yes = QtGui.QMessageBox.Yes
 def msgBox(x):
@@ -81,7 +96,6 @@ version = 0
 fileVersion = ''
 
 class MainWindow(startScreen.Ui_mainWindow, QtGui.QMainWindow):
-    ver = ''
     def pythonVersion(self):
         global version
         global fileVersion
@@ -107,7 +121,6 @@ class MainWindow(startScreen.Ui_mainWindow, QtGui.QMainWindow):
             self.close()
             self.uninstall = UninstallWindow()
             self.uninstall.show()
-
     def refreshLists(self):
         print "Refreshing Online Package List..."
         from Scraping import pypiList
@@ -167,6 +180,8 @@ class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
         else:
             self.item = QtGui.QListWidgetItem('=== No Outdated Packges ===')
             self.listWidget.addItem(self.item)
+            self.btnUpdate.setEnabled(False)
+            self.btnUpdateAll.setEnabled(False)
 
     def updateFn(self):
         items = self.listWidget.selectedItems()
@@ -181,8 +196,8 @@ class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
         self.close()
         self.progWindow.show()
         for i in self.selectedList:
-            self.progWindow.callProgram(version, ['install', i, '-U'], 2)
             self.outdatedPackages.remove(i)
+        self.progWindow.callProgram(version, ['install'] + self.selectedList, 2)
         print 'Selected Packages Updated'
         json.dump(self.outdatedPackages, open('Resource_Files/outdatedPackage' + fileVersion + '.json', 'w'))
 
@@ -192,8 +207,7 @@ class UpdateWindow(QtGui.QMainWindow, updateScreen.Ui_Form):
         self.progWindow.setLabelText('Updation in progress..')
         self.close()
         self.progWindow.show()
-        for i in self.outdatedPackages:
-            self.progWindow.callProgram(version, ['install', i, '-U'], 2)
+        self.progWindow.callProgram(version, ['install'] + self.outdatedPackages, 2)
         print 'All Packages Updated.'
         json.dump([], open('Resource_Files/outdatedPackage' + fileVersion + '.json', 'w'))
 
@@ -236,35 +250,30 @@ class UninstallWindow(QtGui.QMainWindow, uninstallScreen.Ui_Form):
             self.close()
             self.progWindow.show()
             for i in self.selectedList:
-                self.progWindow.callProgram(version, ['uninstall', i, '-y'], 5)
                 if i in self.allPackages:
                     self.allPackages.remove(i)
+            self.progWindow.callProgram(version, ['uninstall'] + self.selectedList, 5)
             print 'Selected Packages Uninstalled'
             self.selectedList = list()
             json.dump(self.allPackages, open('Resource_Files/installedPackage' + fileVersion + '.json', 'w'))
+
         else:
             msgBox(4)
-        self.close()
 
     def uninstallAllFn(self):
         global Yes
         global version
-        if version == 0:
-            ver = 'pip'
-        elif version == 1:
-            ver = 'pip3'
         if msgBox(3) == Yes:
-            import os
-            os.system(version + ' freeze > requirements.txt ')
-            os.system(version + ' uninstall -r requirements.txt')
+            self.progWindow = ProgressWindow()
+            self.progWindow.setLabelText('Uninstallation in progress..')
+            self.close()
+            self.progWindow.show()
+            self.progWindow.callProgram(version, ['uninstall'] + self.allPackages, 5)
             print 'All Packages Uninstalled.'
             json.dump([], open('Resource_Files/installedPackage' + fileVersion + '.json', 'w'))
             msgBox(5)
         else:
             msgBox(4)
-        self.close()
-        self.uninstall = UninstallWindow()
-        self.uninstall.show()
 
     def backFn(self):
         self.close()
@@ -312,9 +321,9 @@ class InstallWindow(QtGui.QMainWindow, installScreen.Ui_Form):
                 self.selectedList.append(k)
         self.progWindow.show()
         for i in self.selectedList:
-            self.progWindow.callProgram(version, ['install', i], 1)
             if i not in self.offlinePackages:
                 self.offlinePackages.append(i)
+        self.progWindow.callProgram(version, ['install'] + self.selectedList, 1)
         print 'Selected Packages Installed'
         json.dump(sorted(self.offlinePackages), open('Resource_Files/installedPackage' + fileVersion + '.json', 'w'))
         self.close()

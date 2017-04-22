@@ -1,7 +1,7 @@
 import sys
 from PyQt4 import QtGui,QtCore
 
-class gui(QtGui.QMainWindow):
+class gui(QtGui.QMainWindow, QtCore.QProcess):
     def __init__(self):
         super(gui, self).__init__()
         self.initUI()
@@ -11,9 +11,14 @@ class gui(QtGui.QMainWindow):
         cursor.insertText(str(self.process.readAll()))
         self.output.ensureCursorVisible()
     def callProgram(self):
-        # run the process
-        # `start` takes the exec and a list of arguments
-        self.process.start('pip',['install', 'flask'])
+        #for i in ['flask', '1337', 'pymouse']:
+            #self.process.state()
+            #process = QtCore.QProcess(self)
+            #process.start('pip', ['install', i])
+        #QtCore.QProcess(self).start('pip', ['install', 'flask'])
+        #self.process.start('pip', ['uninstall', 'flask', '-y', '1337', '-y'])
+        self.process.start('pip', ['install', 'flask', '1337'])
+        #self.QtCore.QProcess(self).start('y', [])
     def initUI(self):
         # Layout are better for placing widgets
         layout = QtGui.QHBoxLayout()
