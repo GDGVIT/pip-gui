@@ -32,4 +32,4 @@ The uninstallation screen displays the list of packages which are installed in t
 ### The Progress Window
 ![alt text](readme/progressWindow.png?raw=true "Progress Window")
 
-The progress window is an in-built terminal widget for PIP-GUI which displays the processes running while performing operations.
+The progress window is an built-in terminal widget for PIP-GUI which displays the processes running while performing operations.
