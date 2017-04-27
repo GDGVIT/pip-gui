@@ -1,1 +1,0 @@
-["docker-py", "jmespath", "keyring", "mercurial", "nassl", "openpyxl", "paramiko", "pcapy", "persistent", "Pillow", "psutil", "PyGithub", "PyJWT", "pylibemu", "pyOpenSSL", "pyscard", "pysmi", "python-dateutil", "pytz", "PyX", "requests", "s3transfer", "tornado", "transaction", "typing", "tzlocal", "webencodings"]
