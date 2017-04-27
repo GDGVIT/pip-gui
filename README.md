@@ -1,4 +1,4 @@
-# PIP_GUI
+# PIP-GUI
 A GUI framework for PIP developed using PyQt4
 
 ### The Start Screen
@@ -29,7 +29,7 @@ The update screen displays the list of packages which are out-of-date and can be
 The uninstallation screen displays the list of packages which are installed in the user's system and can be uninstalled.
 
 
-#The Progress Window
+### The Progress Window
 ![alt text](readme/progressWindow.png?raw=true "Progress Window")
 
 The progress window is an in-built terminal widget for PIP-GUI which displays the processes running while performing operations.
