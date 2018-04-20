@@ -47,7 +47,7 @@ setup(
     },
     classifiers=[
         "Development Status :: 4 - Beta",
-        "License :: OSI Approved :: Apache Software License",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Environment :: X11 Applications :: Qt",
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2 :: Only",
