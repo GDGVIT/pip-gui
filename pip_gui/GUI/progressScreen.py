@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -15,23 +15,23 @@ except AttributeError:
         return s
 
 try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
+    _encoding = QtWidgets.QApplication.UnicodeUTF8
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+        return QtWidgets.QApplication.translate(context, text, disambig)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
         Form.resize(582, 317)
-        self.verticalLayoutWidget = QtGui.QWidget(Form)
+        self.verticalLayoutWidget = QtWidgets.QWidget(Form)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 561, 261))
         self.verticalLayoutWidget.setObjectName(_fromUtf8("verticalLayoutWidget"))
-        self.verticalLayout = QtGui.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        self.labelProgress = QtGui.QLabel(self.verticalLayoutWidget)
+        self.labelProgress = QtWidgets.QLabel(self.verticalLayoutWidget)
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -39,10 +39,10 @@ class Ui_Form(object):
         self.labelProgress.setFont(font)
         self.labelProgress.setObjectName(_fromUtf8("labelProgress"))
         self.verticalLayout.addWidget(self.labelProgress)
-        self.textEdit = QtGui.QTextEdit(self.verticalLayoutWidget)
+        self.textEdit = QtWidgets.QTextEdit(self.verticalLayoutWidget)
         self.textEdit.setObjectName(_fromUtf8("textEdit"))
         self.verticalLayout.addWidget(self.textEdit)
-        self.btnContinue = QtGui.QPushButton(Form)
+        self.btnContinue = QtWidgets.QPushButton(Form)
         self.btnContinue.setGeometry(QtCore.QRect(450, 280, 90, 28))
         self.btnContinue.setObjectName(_fromUtf8("btnContinue"))
 

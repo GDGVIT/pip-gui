@@ -55,6 +55,7 @@ setup(
         "Programming Language :: Python :: Implementation :: CPython"
     ],
     install_requires=[
-    "beautifulsoup4>=4.5, <4.5.4"
+    # "beautifulsoup4>=4.5, <4.5.4"
+    "beautifulsoup4"
     ]
 )
