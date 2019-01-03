@@ -78,6 +78,6 @@ class Ui_Form(object):
         self.btnBack.setText(_translate("Form", "Go Back", None))
         self.label.setText(_translate("Form",
                                       "Please select the packages "
-                                      "you want to update:",
+                                      "you want to install:",
                                       None))
         self.label_2.setText(_translate("Form", "Search Packages:", None))
