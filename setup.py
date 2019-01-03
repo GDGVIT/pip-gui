@@ -26,7 +26,7 @@ def find_version(*file_paths):
 
 
 try:
-    fh = codecs.open("README.rst", encoding="utf-8")
+    fh = codecs.open("README.md", encoding="utf-8")
     long_description = fh.read()
     fh.close()
 except FileNotFoundError:
