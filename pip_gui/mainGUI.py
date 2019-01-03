@@ -164,6 +164,13 @@ class MainWindow(startScreen.Ui_mainWindow, QtWidgets.QMainWindow):
         self.setupUi(self)
         self.setWindowIcon(
             QtGui.QIcon('pip_gui/Resource_Files/googledev.png'))
+
+        # Check for python version
+        if sys.version_info.major == 3:
+            self.radioPy3.setChecked(True)
+        elif sys.version_info.major == 2:
+            self.radioPy2.setChecked(True)
+
         # Quiting the Application
         self.btnExit.clicked.connect(self.endApp)
         self.btnExit.setToolTip('Exit Application')
