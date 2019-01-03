@@ -17,7 +17,6 @@ except AttributeError:
 try:
     _encoding = QtWidgets.QApplication.UnicodeUTF8
 
-
     def _translate(context, text, disambig):
         return QtWidgets.QApplication.translate(context, text, disambig,
                                                 _encoding)
@@ -66,7 +65,8 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Uninstall Packages", None))
         self.label.setText(_translate("Form",
-                                      "Please select the packages you want to uninstall:",
+                                      "Please select the packages "
+                                      "you want to uninstall:",
                                       None))
         self.btnUninstall.setText(_translate("Form", "Uninstall", None))
         self.btnUninstallAll.setText(
