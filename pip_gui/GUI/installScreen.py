@@ -16,20 +16,27 @@ except AttributeError:
 
 try:
     _encoding = QtWidgets.QApplication.UnicodeUTF8
+
+
     def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig,
+                                                _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtWidgets.QApplication.translate(context, text, disambig)
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
         Form.resize(440, 538)
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(300, 140, 121, 98))
-        self.verticalLayoutWidget.setObjectName(_fromUtf8("verticalLayoutWidget"))
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayoutWidget.setGeometry(
+            QtCore.QRect(300, 140, 121, 98))
+        self.verticalLayoutWidget.setObjectName(
+            _fromUtf8("verticalLayoutWidget"))
+        self.verticalLayout = QtWidgets.QVBoxLayout(
+            self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.btnInstall = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.btnInstall.setObjectName(_fromUtf8("btnInstall"))
@@ -39,7 +46,8 @@ class Ui_Form(object):
         self.verticalLayout.addWidget(self.btnBack)
         self.listWidget = QtWidgets.QListWidget(Form)
         self.listWidget.setGeometry(QtCore.QRect(20, 140, 261, 381))
-        self.listWidget.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+        self.listWidget.setSelectionMode(
+            QtWidgets.QAbstractItemView.MultiSelection)
         self.listWidget.setObjectName(_fromUtf8("listWidget"))
         self.label = QtWidgets.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(20, 100, 401, 21))
@@ -48,9 +56,12 @@ class Ui_Form(object):
         self.label.setFont(font)
         self.label.setObjectName(_fromUtf8("label"))
         self.horizontalLayoutWidget = QtWidgets.QWidget(Form)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(20, 10, 401, 80))
-        self.horizontalLayoutWidget.setObjectName(_fromUtf8("horizontalLayoutWidget"))
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayoutWidget.setGeometry(
+            QtCore.QRect(20, 10, 401, 80))
+        self.horizontalLayoutWidget.setObjectName(
+            _fromUtf8("horizontalLayoutWidget"))
+        self.horizontalLayout = QtWidgets.QHBoxLayout(
+            self.horizontalLayoutWidget)
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.label_2 = QtWidgets.QLabel(self.horizontalLayoutWidget)
         self.label_2.setObjectName(_fromUtf8("label_2"))
@@ -66,6 +77,7 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Install Packages", None))
         self.btnInstall.setText(_translate("Form", "Install", None))
         self.btnBack.setText(_translate("Form", "Go Back", None))
-        self.label.setText(_translate("Form", "Please select the packages you want to update:", None))
+        self.label.setText(_translate("Form",
+                                      "Please select the packages you want to update:",
+                                      None))
         self.label_2.setText(_translate("Form", "Search Packages:", None))
-

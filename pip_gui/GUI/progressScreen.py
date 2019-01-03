@@ -16,20 +16,27 @@ except AttributeError:
 
 try:
     _encoding = QtWidgets.QApplication.UnicodeUTF8
+
+
     def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig,
+                                                _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtWidgets.QApplication.translate(context, text, disambig)
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
         Form.resize(582, 317)
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 561, 261))
-        self.verticalLayoutWidget.setObjectName(_fromUtf8("verticalLayoutWidget"))
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayoutWidget.setGeometry(
+            QtCore.QRect(10, 10, 561, 261))
+        self.verticalLayoutWidget.setObjectName(
+            _fromUtf8("verticalLayoutWidget"))
+        self.verticalLayout = QtWidgets.QVBoxLayout(
+            self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.labelProgress = QtWidgets.QLabel(self.verticalLayoutWidget)
         font = QtGui.QFont()
@@ -51,6 +58,6 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Progress Window", None))
-        self.labelProgress.setText(_translate("Form", "Filler Text..", None))
+        self.labelProgress.setText(
+            _translate("Form", "Filler Text..", None))
         self.btnContinue.setText(_translate("Form", "Continue", None))
-

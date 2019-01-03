@@ -16,11 +16,15 @@ except AttributeError:
 
 try:
     _encoding = QtWidgets.QApplication.UnicodeUTF8
+
+
     def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig,
+                                                _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtWidgets.QApplication.translate(context, text, disambig)
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -34,17 +38,22 @@ class Ui_Form(object):
         self.label.setObjectName(_fromUtf8("label"))
         self.listWidget = QtWidgets.QListWidget(Form)
         self.listWidget.setGeometry(QtCore.QRect(10, 60, 261, 381))
-        self.listWidget.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+        self.listWidget.setSelectionMode(
+            QtWidgets.QAbstractItemView.MultiSelection)
         self.listWidget.setObjectName(_fromUtf8("listWidget"))
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(290, 60, 121, 98))
-        self.verticalLayoutWidget.setObjectName(_fromUtf8("verticalLayoutWidget"))
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayoutWidget.setGeometry(
+            QtCore.QRect(290, 60, 121, 98))
+        self.verticalLayoutWidget.setObjectName(
+            _fromUtf8("verticalLayoutWidget"))
+        self.verticalLayout = QtWidgets.QVBoxLayout(
+            self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.btnUninstall = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.btnUninstall.setObjectName(_fromUtf8("btnUninstall"))
         self.verticalLayout.addWidget(self.btnUninstall)
-        self.btnUninstallAll = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.btnUninstallAll = QtWidgets.QPushButton(
+            self.verticalLayoutWidget)
         self.btnUninstallAll.setObjectName(_fromUtf8("btnUninstallAll"))
         self.verticalLayout.addWidget(self.btnUninstallAll)
         self.btnBack = QtWidgets.QPushButton(self.verticalLayoutWidget)
@@ -56,8 +65,10 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Uninstall Packages", None))
-        self.label.setText(_translate("Form", "Please select the packages you want to uninstall:", None))
+        self.label.setText(_translate("Form",
+                                      "Please select the packages you want to uninstall:",
+                                      None))
         self.btnUninstall.setText(_translate("Form", "Uninstall", None))
-        self.btnUninstallAll.setText(_translate("Form", "Uninstall All", None))
+        self.btnUninstallAll.setText(
+            _translate("Form", "Uninstall All", None))
         self.btnBack.setText(_translate("Form", "Go Back", None))
-

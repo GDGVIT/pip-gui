@@ -16,11 +16,15 @@ except AttributeError:
 
 try:
     _encoding = QtWidgets.QApplication.UnicodeUTF8
+
+
     def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig,
+                                                _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtWidgets.QApplication.translate(context, text, disambig)
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -28,12 +32,16 @@ class Ui_Form(object):
         Form.resize(427, 456)
         self.listWidget = QtWidgets.QListWidget(Form)
         self.listWidget.setGeometry(QtCore.QRect(10, 60, 261, 381))
-        self.listWidget.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+        self.listWidget.setSelectionMode(
+            QtWidgets.QAbstractItemView.MultiSelection)
         self.listWidget.setObjectName(_fromUtf8("listWidget"))
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(290, 60, 121, 98))
-        self.verticalLayoutWidget.setObjectName(_fromUtf8("verticalLayoutWidget"))
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayoutWidget.setGeometry(
+            QtCore.QRect(290, 60, 121, 98))
+        self.verticalLayoutWidget.setObjectName(
+            _fromUtf8("verticalLayoutWidget"))
+        self.verticalLayout = QtWidgets.QVBoxLayout(
+            self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.btnUpdate = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.btnUpdate.setObjectName(_fromUtf8("btnUpdate"))
@@ -59,5 +67,6 @@ class Ui_Form(object):
         self.btnUpdate.setText(_translate("Form", "Update", None))
         self.btnUpdateAll.setText(_translate("Form", "Update All", None))
         self.btnBack.setText(_translate("Form", "Go Back", None))
-        self.label.setText(_translate("Form", "Please select the packages you want to update:", None))
-
+        self.label.setText(_translate("Form",
+                                      "Please select the packages you want to update:",
+                                      None))
