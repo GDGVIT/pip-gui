@@ -17,7 +17,6 @@ except AttributeError:
 try:
     _encoding = QtWidgets.QApplication.UnicodeUTF8
 
-
     def _translate(context, text, disambig):
         return QtWidgets.QApplication.translate(context, text, disambig,
                                                 _encoding)
@@ -78,6 +77,7 @@ class Ui_Form(object):
         self.btnInstall.setText(_translate("Form", "Install", None))
         self.btnBack.setText(_translate("Form", "Go Back", None))
         self.label.setText(_translate("Form",
-                                      "Please select the packages you want to update:",
+                                      "Please select the packages "
+                                      "you want to update:",
                                       None))
         self.label_2.setText(_translate("Form", "Search Packages:", None))

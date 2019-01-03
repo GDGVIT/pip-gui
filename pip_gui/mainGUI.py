@@ -293,7 +293,8 @@ class UninstallWindow(QtWidgets.QMainWindow, uninstallScreen.Ui_Form):
             # print 'Selected Packages Uninstalled'
             self.selectedList = list()
             json.dump(self.allPackages, open(
-                'pip_gui/Resource_Files/installedPackage' + fileVersion + '.json',
+                'pip_gui/Resource_Files/installedPackage' + fileVersion
+                + '.json',
                 'w'))
 
         else:
@@ -311,7 +312,8 @@ class UninstallWindow(QtWidgets.QMainWindow, uninstallScreen.Ui_Form):
                                         ['uninstall'] + self.allPackages, 5)
             # print 'All Packages Uninstalled.'
             json.dump([], open(
-                'pip_gui/Resource_Files/installedPackage' + fileVersion + '.json',
+                'pip_gui/Resource_Files/installedPackage' + fileVersion
+                + '.json',
                 'w'))
             msgBox(5)
         else:

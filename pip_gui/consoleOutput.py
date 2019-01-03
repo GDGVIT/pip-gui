@@ -51,7 +51,8 @@ class gui(QtWidgets.QMainWindow, QtCore.QProcess):
         self.process.readyRead.connect(self.dataReady)
 
         # Just to prevent accidentally running multiple times
-        # Disable the button when process starts, and enable it when it finishes
+        # Disable the button when process starts, and enable it
+        # when it finishes
         self.process.started.connect(
             lambda: self.runButton.setEnabled(False))
         self.process.finished.connect(
