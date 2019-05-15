@@ -4,3 +4,4 @@ venv/
 UI_Files/
 build/
 dist/
+.idea*
