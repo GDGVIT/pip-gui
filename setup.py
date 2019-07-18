@@ -37,7 +37,7 @@ setup(
         version=find_version("pip_gui/mainGUI.py"),
         description="",
         url="https://github.com/GDGVIT/pip-gui",
-        author="GDGVIT",
+        author="Ayush Priya",
         packages=find_packages(include=[
             "pip_gui",
             "pip_gui.*"
