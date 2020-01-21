@@ -1,0 +1,2 @@
+beautifulsoup4==4.8.2
+PyQt5==5.14.1

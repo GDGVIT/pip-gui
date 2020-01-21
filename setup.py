@@ -34,19 +34,19 @@ except FileNotFoundError:
 
 setup(
         name="pipgui",
-        version=find_version("pip_gui/mainGUI.py"),
-        description="",
+        version=find_version("pipgui/mainGUI.py"),
+        description="This package is GUI based tool for installing pip packages in your environment.",
         url="https://github.com/GDGVIT/pip-gui",
         author="Ayush Priya",
         packages=find_packages(include=[
-            "pip_gui",
-            "pip_gui.*"
-        ]),
+            "pipgui",
+            "pipgui.*"
+        ]), 
         include_package_data=True,
         # py_modules=["pip_gui.mainGUI"],
         entry_points={
             "console_scripts": [
-                "pipgui=pip_gui.mainGUI:main"
+                "pipgui=pipgui.mainGUI:main"
             ]
         },
         classifiers=[
