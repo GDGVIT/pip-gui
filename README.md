@@ -57,14 +57,14 @@
   
 * Install the package using 
 ```bash
-pip install pipgui==2.0
+pip install pipgui==1.1
 ```
 
 * Directions to run the package
-
-```bash
-< insert code >
-```
+  - Type the following command in the terminal
+ ```bash
+ pipgui
+ ```
 
 <br>
 
