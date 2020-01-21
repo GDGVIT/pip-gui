@@ -44,7 +44,7 @@
 ## Functionalities
 - [x]  Install/Uninstall pip packages in the active environment
 - [x]  Update packages
-- [x]  Refresh packages directly from the pypi package directory
+- [x]  Get the latest packages directly from the pypi package directory
 - [ ]  Choose enviroment to download packages
 
 <br>
