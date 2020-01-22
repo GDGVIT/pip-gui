@@ -10,21 +10,6 @@ from setuptools import setup, find_packages
 here = os.path.abspath(os.path.dirname(__file__))
 
 
-def find_version(*file_paths):
-    try:
-        fh = codecs.open(os.path.join(here, *file_paths), "r", "latin1")
-        version_file = fh.read()
-        fh.close()
-    except FileNotFoundError:
-        raise RuntimeError("Unable to find version string.")
-
-    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
-                              version_file, re.M)
-    if version_match:
-        return version_match.group(1)
-    raise RuntimeError("Unable to find version string.")
-
-
 try:
     fh = codecs.open("README.md", encoding="utf-8")
     long_description = fh.read()
@@ -34,10 +19,11 @@ except FileNotFoundError:
 
 setup(
         name="pipgui",
-        version=find_version("pipgui/mainGUI.py"),
+        version=1.1,
         description="This package is GUI based tool for installing pip packages in your environment.",
         url="https://github.com/GDGVIT/pip-gui",
-        author="Ayush Priya",
+        author="Ayush Priya, DSC-VIT",
+        author_email="ayushpriya10@gmail.com, dscvitvellore@gmail.com",
         packages=find_packages(include=[
             "pipgui",
             "pipgui.*"
