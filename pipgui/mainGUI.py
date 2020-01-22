@@ -16,7 +16,7 @@ except BaseException:
 
 # from Scraping import genreList, packageList
 
-__version__ = "2.0"
+__version__ = "1.1"
 
 VERSION = 0
 FILEVERSION = ''
