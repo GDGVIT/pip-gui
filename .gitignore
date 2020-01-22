@@ -1,7 +1,6 @@
 *.pyc
 env/
 *.egg-info
-UI_Files/
 build/
 dist/
 .idea*
