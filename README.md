@@ -1,7 +1,7 @@
 <p align="center">
 	<img src="https://user-images.githubusercontent.com/30529572/72455010-fb38d400-37e7-11ea-9c1e-8cdeb5f5906e.png" />
 	<h2 align="center"> PIP-GUI </h2>
-	<h4 align="center"> A GUI framework for managine PIP packages developed using PyQt5 </h4>
+	<h4 align="center"> A GUI framework for managing PIP packages developed using PyQt5 </h4>
   <h2 align="center"> Description </h2>
   
   ### The Start Screen
