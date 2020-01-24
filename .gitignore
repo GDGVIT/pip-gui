@@ -7,6 +7,4 @@ dist/
 .idea*
 pipgui/test/*
 .vscode
-__pycache__
-bin/
-
+bin

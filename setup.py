@@ -31,7 +31,7 @@ except FileNotFoundError:
 
 setup(
         name="pipgui",
-        version=1.1,
+        version=1.2,
         description="This package is GUI based tool for installing pip packages in your environment.",
         url="https://github.com/GDGVIT/pip-gui",
         author="Ayush Priya, DSC-VIT",
