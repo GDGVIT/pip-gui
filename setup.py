@@ -19,7 +19,7 @@ except FileNotFoundError:
 
 setup(
         name="pipgui",
-        version=1.1,
+        version=1.2,
         description="This package is GUI based tool for installing pip packages in your environment.",
         url="https://github.com/GDGVIT/pip-gui",
         author="Ayush Priya, DSC-VIT",
@@ -28,24 +28,29 @@ setup(
             "pipgui",
             "pipgui.*"
         ]), 
+        # cmdclass={
+        # 'install': Install,
+        # },
+        python_requires = '>=3.4',
         include_package_data=True,
         # py_modules=["pip_gui.mainGUI"],
         entry_points={
             "console_scripts": [
-                "pipgui=pipgui.mainGUI:main"
+                "pipgui=pipgui.__main__:main"
             ]
         },
         classifiers=[
             "Development Status :: 4 - Beta",
             "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-            "Environment :: X11 Applications :: Qt",
             "Programming Language :: Python :: 3",
             "Programming Language :: Python :: 3 :: Only",
             "Programming Language :: Python :: 3.6",
             "Programming Language :: Python :: Implementation :: CPython"
         ],
         install_requires=[
-            "PyQt5",
-            "beautifulsoup4"
-        ]
+            "beautifulsoup4",
+             "sip==4.19.8",
+             "PyQt5==5.10.1"  
+        ],
+          
 )
