@@ -387,7 +387,7 @@ class InstallWindow(QtWidgets.QMainWindow, installScreen.Ui_Form):
         self.offlinePackages = json.load(open(
             'Resource_Files/Installed Packages/installedPackage' + FILEVERSION + '.json'))
         self.packages = json.load(
-            open('Resource_Files/Installed Packages/package' + FILEVERSION + '.json'))
+            open('Resource_Files/Current Packages/package' + FILEVERSION + '.json'))
         self.matchedList = list()
         self.selectedList = list()
         self.searchStr = str()

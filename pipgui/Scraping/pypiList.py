@@ -13,3 +13,5 @@ for i in soup.find_all('a'):
 
 file = open('Resource_Files/Current Packages/PpackageList.json', 'w')
 json.dump(pypi_list, file)
+
+print("All Packages are updated!!")
