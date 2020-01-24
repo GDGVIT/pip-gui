@@ -1,0 +1,12 @@
+*.pyc
+env/
+*.egg-info
+UI_Files/
+build/
+dist/
+.idea*
+pipgui/test/*
+.vscode
+__pycache__
+bin/
+

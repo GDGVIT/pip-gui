@@ -1,0 +1,2 @@
+include pipgui/Resource_Files/*
+Exclude pipgui/Test/*
