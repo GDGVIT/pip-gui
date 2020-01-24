@@ -14,8 +14,8 @@ installedPackages3 = [i for i in installedPackages3 if ' ' not in i]
 
 print('Loaded...')
 # Dump files
-iP = open('Resource_Files/installedPackageList.json', 'w')
-iP3 = open('Resource_Files/installedPackageList3.json', 'w')
+iP = open('Resource_Files/Installed Packages/installedPackageList.json', 'w')
+iP3 = open('Resource_Files/Installed Packages/installedPackageList3.json', 'w')
 
 json.dump(installedPackages, iP)
 json.dump(installedPackages3, iP3)

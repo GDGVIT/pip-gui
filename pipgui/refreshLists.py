@@ -11,12 +11,13 @@ class refreshList(object):
         try:
             from Scraping import pypiList
         except Exception as e:
-            logging.error('Unable to fetch the online packages!')
+            print(e)
         print("\nRefreshing Installed Package List...")
         try:
             from Package_Management import installedList
         except Exception as e:
-            logging.error('Unable to fetch installed packages!')
+            # logging.error('Unable to fetch installed packages!')
+            print(e)
         print("\nRefreshing Outdated Package List...")
         try:
             from Package_Management import outdatedList

@@ -15,8 +15,8 @@ while 'Retrying' in outdatedPackages3:
 
 print('Loaded...')
 
-oP = open('Resource_Files/outdatedPackageList.json', 'w')
-oP3 = open('Resource_Files/outdatedPackageList3.json', 'w')
+oP = open('Resource_Files/Outdated Packages/outdatedPackageList.json', 'w')
+oP3 = open('Resource_Files/Outdated Packages/outdatedPackageList3.json', 'w')
 
 json.dump(outdatedPackages, oP)
 json.dump(outdatedPackages3, oP3)

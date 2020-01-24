@@ -6,7 +6,7 @@ import json
 genrePattern = re.compile(r'#[\w-]+')
 
 #Source Code File
-file = open('Resource_Files/db.txt')
+file = open('Resource_Files/Package Sources/db.txt')
 src = BeautifulSoup(file.read(), 'lxml')
 
 #List of all genre 'a' tags
@@ -21,9 +21,9 @@ genreTags = list(set([i['href'] for i in aTagList]))
 genres = {i.string:i['href'] for i in aTagList if i.string != None}
 
 #JSON dump files
-gL = open('Resource_Files/genreListFile.json', 'w')
-gT = open('Resource_Files/genreTagFile.json', 'w')
-g = open('Resource_Files/genreFile.json', 'w')
+gL = open('Resource_Files/Package Sources/genreListFile.json', 'w')
+gT = open('Resource_Files/Package Sources/genreTagFile.json', 'w')
+g = open('Resource_Files/Package Sources/genreFile.json', 'w')
 
 json.dump(genreList, gL)
 json.dump(genreTags, gT)

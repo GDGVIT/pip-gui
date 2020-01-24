@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="piplogo">
+    <file>pipgui.png</file>
+  </qresource>
+</RCC>

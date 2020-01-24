@@ -11,5 +11,5 @@ pypi_list = list()
 for i in soup.find_all('a'):
     pypi_list.append(i['href'])
 
-file = open('Resource_Files/packageList.json', 'w')
+file = open('Resource_Files/Current Packages/PpackageList.json', 'w')
 json.dump(pypi_list, file)

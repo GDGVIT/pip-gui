@@ -30,7 +30,7 @@ class ProgressWindow(QtWidgets.QMainWindow, progressScreen.Ui_Form):
         super(ProgressWindow, self).__init__()
         self.setupUi(self)
         self.setWindowIcon(
-            QtGui.QIcon('Resource_Files/googledev.png'))
+            QtGui.QIcon('Resource_Files/Assets/dsc-logo.jpeg'))
         # QProcess object for external app
         self.process = QtCore.QProcess(self)
         # QProcess emits `readyRead` when there is data to be read
@@ -152,7 +152,7 @@ class MainWindow(startScreen.Ui_mainWindow, QtWidgets.QMainWindow):
         super(MainWindow, self).__init__()
         self.setupUi(self)
         self.setWindowIcon(
-            QtGui.QIcon('Resource_Files/googledev.png'))
+            QtGui.QIcon('Resource_Files/Assets/dsc-logo.jfif'))
         # Check for python version
         if sys.version_info.major == 3:
             self.radioPy3.setChecked(True)
@@ -234,9 +234,9 @@ class UpdateWindow(QtWidgets.QMainWindow, updateScreen.Ui_Form):
         super(UpdateWindow, self).__init__()
         self.setupUi(self)
         self.setWindowIcon(
-            QtGui.QIcon('Resource_Files/googledev.png'))
+            QtGui.QIcon('Resource_Files/Assets/dsc-logo.jpeg'))
         self.outdatedPackages = json.load(open(
-            'Resource_Files/outdatedPackage' + FILEVERSION + '.json'))
+            'Resource_Files/Outdated Packages/outdatedPackage' + FILEVERSION + '.json'))
         self.selectedList = list()
         self.btnBack.clicked.connect(self.backFn)
         self.btnUpdateAll.clicked.connect(self.updateAllFn)
@@ -269,7 +269,7 @@ class UpdateWindow(QtWidgets.QMainWindow, updateScreen.Ui_Form):
                                     ['install'] + self.selectedList, 2)
         
         # print 'Selected Packages Updated'
-        with open('Resource_Files/outdatedPackage' + FILEVERSION + '.json', 'w') as file:
+        with open('Resource_Files/Outdated Packages/outdatedPackage' + FILEVERSION + '.json', 'w') as file:
             json.dump(self.outdatedPackages, file)
 
     def updateAllFn(self):
@@ -281,7 +281,7 @@ class UpdateWindow(QtWidgets.QMainWindow, updateScreen.Ui_Form):
         self.progWindow.callProgram(VERSION,
                                     ['install'] + self.outdatedPackages, 2)
         # print 'All Packages Updated.'
-        with open('Resource_Files/outdatedPackage' + FILEVERSION + '.json', 'w') as file:
+        with open('Resource_Files/Outdated Packages/outdatedPackage' + FILEVERSION + '.json', 'w') as file:
             json.dump([], file)
 
     def backFn(self):
@@ -307,9 +307,9 @@ class UninstallWindow(QtWidgets.QMainWindow, uninstallScreen.Ui_Form):
         super(UninstallWindow, self).__init__()
         self.setupUi(self)
         self.setWindowIcon(
-            QtGui.QIcon('Resource_Files/googledev.png'))
+            QtGui.QIcon('Resource_Files/Assets/dsc-logo.jpeg'))
         self.allPackages = json.load(open(
-            'Resource_Files/installedPackage' + FILEVERSION + '.json'))
+            'Resource_Files/Installed Packages/installedPackage' + FILEVERSION + '.json'))
         self.btnBack.clicked.connect(self.backFn)
         self.btnUninstallAll.clicked.connect(self.uninstallAllFn)
         self.btnUninstall.clicked.connect(self.uninstallFn)
@@ -339,7 +339,7 @@ class UninstallWindow(QtWidgets.QMainWindow, uninstallScreen.Ui_Form):
             
             # print 'Selected Packages Uninstalled'
             self.selectedList = list()
-            with open('Resource_Files/installedPackage' + FILEVERSION + '.json', 'w') as file:
+            with open('Resource_Files/Installed Packages/installedPackage' + FILEVERSION + '.json', 'w') as file:
                 json.dump(self.allPackages, file)
 
         else:
@@ -355,7 +355,7 @@ class UninstallWindow(QtWidgets.QMainWindow, uninstallScreen.Ui_Form):
             self.progWindow.callProgram(VERSION,
                                         ['uninstall'] + self.allPackages, 5)
             # print 'All Packages Uninstalled.'
-            with open('Resource_Files/installedPackage' + FILEVERSION + '.json', 'w') as file:
+            with open('Resource_Files/Installed Packages/installedPackage' + FILEVERSION + '.json', 'w') as file:
                 json.dump([], file)
             msgBox(5)
         else:
@@ -383,11 +383,11 @@ class InstallWindow(QtWidgets.QMainWindow, installScreen.Ui_Form):
         super(InstallWindow, self).__init__()
         self.setupUi(self)
         self.setWindowIcon(
-            QtGui.QIcon('Resource_Files/googledev.png'))
+            QtGui.QIcon('Resource_Files/Assets/dsc-logo.jpeg'))
         self.offlinePackages = json.load(open(
-            'Resource_Files/installedPackage' + FILEVERSION + '.json'))
+            'Resource_Files/Installed Packages/installedPackage' + FILEVERSION + '.json'))
         self.packages = json.load(
-            open('Resource_Files/package' + FILEVERSION + '.json'))
+            open('Resource_Files/Installed Packages/package' + FILEVERSION + '.json'))
         self.matchedList = list()
         self.selectedList = list()
         self.searchStr = str()
@@ -424,7 +424,7 @@ class InstallWindow(QtWidgets.QMainWindow, installScreen.Ui_Form):
         self.progWindow.callProgram(VERSION,
                                     ['install'] + self.selectedList, 1)
         # print 'Selected Packages Installed'
-        with open('Resource_Files/installedPackage' + FILEVERSION + '.json', 'w') as file:
+        with open('Resource_Files/Installed Packages/installedPackage' + FILEVERSION + '.json', 'w') as file:
             json.dump(sorted(self.offlinePackages), file)
         self.close()
 
