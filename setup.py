@@ -6,21 +6,9 @@ import os
 import re
 
 from setuptools import setup, find_packages
-from setup_qt import build_qt
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-
-# from setuptools.command.install import install as InstallCommand
-
-
-# class Install(InstallCommand):
-#     """ Customized setuptools install command which uses pip. """
-
-#     def run(self, *args, **kwargs):
-#         import pip
-#         pip.main(['install', '.'])
-#         InstallCommand.run(self, *args, **kwargs)
 
 try:
     fh = codecs.open("README.md", encoding="utf-8")

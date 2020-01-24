@@ -1,2 +1,1 @@
-
-from mainGUI import main
+from . import mainGUI

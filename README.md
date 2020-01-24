@@ -1,7 +1,7 @@
 <p align="center">
 	<img src="https://user-images.githubusercontent.com/30529572/72455010-fb38d400-37e7-11ea-9c1e-8cdeb5f5906e.png" />
 	<h2 align="center"> PIP-GUI </h2>
-	<h4 align="center"> A GUI framework for managine PIP packages developed using PyQt5 </h4>
+	<h4 align="center"> A GUI framework for managing PIP packages developed using PyQt5 </h4>
   <h2 align="center"> Description </h2>
   
   ### The Start Screen
@@ -46,6 +46,8 @@
 - [x]  Update packages
 - [x]  Get the latest packages directly from the pypi package directory
 - [ ]  Choose enviroment to download packages
+- [ ]  Search option in updates and uninstall windows
+- [ ]  Installing package in user directory (--user)
 
 <br>
 
@@ -70,7 +72,11 @@ pip install pipgui==1.1
 
 ## Contributors
 
-* <a href='https://github.com/ayushpriya10'>Ayush Priya</a>
+* [Ayush Priya](https://github.com/ayushpriya10)
+* [zdenop](https://github.com/zdenop)
+* [Geek-ubaid](https://github.com/Geek-ubaid)
+* [ujjwal96](https://github.com/ujjwal96)
+* [L04DB4L4NC3R](https://github.com/L04DB4L4NC3R)
 
 
 <br>
