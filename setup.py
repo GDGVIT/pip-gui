@@ -1,21 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import codecs
 import os
 import re
 
+import codecs
 from setuptools import setup, find_packages
-
-here = os.path.abspath(os.path.dirname(__file__))
-
-
-try:
-    fh = codecs.open("README.md", encoding="utf-8")
-    long_description = fh.read()
-    fh.close()
-except FileNotFoundError:
-    long_description = ""
 
 setup(
         name="pipgui",
@@ -28,12 +18,8 @@ setup(
             "pipgui",
             "pipgui.*"
         ]), 
-        # cmdclass={
-        # 'install': Install,
-        # },
         python_requires = '>=3.4',
         include_package_data=True,
-        # py_modules=["pip_gui.mainGUI"],
         entry_points={
             "console_scripts": [
                 "pipgui=pipgui.__main__:main"
