@@ -49,7 +49,7 @@ setup(
         ],
         install_requires=[
             "beautifulsoup4",
-             "sip==4.19.8",
+             "sip==5.2.0",
              "PyQt5==5.10.1"  
         ],
           
