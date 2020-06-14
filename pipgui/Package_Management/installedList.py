@@ -1,4 +1,5 @@
 import json
+import pkg_resources
 from subprocess import getoutput
 
 packages = getoutput('pip freeze')
@@ -14,8 +15,8 @@ installedPackages3 = [i for i in installedPackages3 if ' ' not in i]
 
 print('Loaded...')
 # Dump files
-iP = open('Resource_Files/installedPackageList.json', 'w')
-iP3 = open('Resource_Files/installedPackageList3.json', 'w')
+iP = open(pkg_resources.resource_filename('pipgui', 'Resource_Files/installedPackageList.json'), 'w')
+iP3 = open(pkg_resources.resource_filename('pipgui', 'Resource_Files/installedPackageList3.json'), 'w')
 
 json.dump(installedPackages, iP)
 json.dump(installedPackages3, iP3)
