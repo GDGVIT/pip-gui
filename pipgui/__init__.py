@@ -1,1 +1,1 @@
-from . import mainGUI
+from . import GUI
