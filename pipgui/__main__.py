@@ -15,8 +15,6 @@ except BaseException:
     from GUI import startScreen, progressScreen, uninstallScreen, \
         updateScreen, installScreen
 
-# from Scraping import genreList, packageList
-
 VERSION = 0
 FILEVERSION = ''
 
@@ -28,6 +26,41 @@ PACKAGE_DIR = './Resource_Files/Current Packages/'
 Yes = QtWidgets.QMessageBox.Yes
 
 
+def msgBox(x):
+    
+    """Function for defining various status message for actions"""
+    msg = QtWidgets.QMessageBox()
+    msg.setWindowTitle("Status Window")
+    msg.setIcon(QtWidgets.QMessageBox.Information)
+
+    if x == 1:
+        msg.setText("Selected Packages have been installed.")
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
+    if x == 2:
+        msg.setText('Selected Packages have been upgraded.')
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
+    if x == 3:
+        msg.setText('Are you sure you wanna uninstall?')
+        msg.setIcon(QtWidgets.QMessageBox.Question)
+        msg.setStandardButtons(
+            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+    if x == 4:
+        msg.setText('Uninstall Aborted.')
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
+    if x == 5:
+        msg.setText('Selected Packages have been uninstalled.')
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
+    if x == 6:
+        msg.setText('Lists Refreshed.')
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
+    if x == 7:
+        msg.setText('Are you sure you wanna exit?')
+        msg.setIcon(QtWidgets.QMessageBox.Question)
+        msg.setStandardButtons(
+            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+    return msg.exec_()
+
+
 class ProgressWindow(QtWidgets.QMainWindow, progressScreen.Ui_Form):
     """This class is for showing the progress of all the events happening in the interface"""
 
@@ -36,9 +69,11 @@ class ProgressWindow(QtWidgets.QMainWindow, progressScreen.Ui_Form):
         self.setupUi(self)
         self.setWindowIcon(
             QtGui.QIcon(pkg_resources.resource_filename('pipgui', ASSETS_DIR + 'googledev.png')))
+        
         # QProcess object for external app
         self.process = QtCore.QProcess(self)
         # QProcess emits `readyRead` when there is data to be read
+        
         self.process.readyRead.connect(self.dataReady)
         self.process.started.connect(
             lambda: self.btnContinue.setEnabled(False))
@@ -102,42 +137,6 @@ class ProgressWindow(QtWidgets.QMainWindow, progressScreen.Ui_Form):
 
         if x == 6:
             self.onStart(ver, processList)
-
-
-def msgBox(x):
-    """Function for defining various status message for actions"""
-
-    msg = QtWidgets.QMessageBox()
-    msg.setWindowTitle("Status Window")
-    msg.setIcon(QtWidgets.QMessageBox.Information)
-
-    if x == 1:
-        msg.setText("Selected Packages have been installed.")
-        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
-    if x == 2:
-        msg.setText('Selected Packages have been upgraded.')
-        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
-    if x == 3:
-        msg.setText('Are you sure you wanna uninstall?')
-        msg.setIcon(QtWidgets.QMessageBox.Question)
-        msg.setStandardButtons(
-            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-    if x == 4:
-        msg.setText('Uninstall Aborted.')
-        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
-    if x == 5:
-        msg.setText('Selected Packages have been uninstalled.')
-        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
-    if x == 6:
-        msg.setText('Lists Refreshed.')
-        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
-    if x == 7:
-        msg.setText('Are you sure you wanna exit?')
-        msg.setIcon(QtWidgets.QMessageBox.Question)
-        msg.setStandardButtons(
-            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-    return msg.exec_()
-
 
 class MainWindow(startScreen.Ui_mainWindow, QtWidgets.QMainWindow):
 
@@ -211,7 +210,6 @@ class UpdateWindow(QtWidgets.QMainWindow, updateScreen.Ui_Form):
 
     global FILEVERSION
     global VERSION
-    global outdatedPackages
 
     ver = ''
 
