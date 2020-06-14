@@ -189,9 +189,9 @@ class MainWindow(startScreen.Ui_mainWindow, QtWidgets.QMainWindow):
         self.close()
         self.progWindow.show()
         try:
-            self.progWindow.callProgram('python', ['refreshLists.py'], 6)
+            self.progWindow.callProgram('python', ['-m', 'pipgui.refreshLists'], 6)
         except:
-            self.progWindow.callProgram('python3', ['refreshLists.py'], 6)
+            self.progWindow.callProgram('python3', ['-m', 'pipgui.refreshLists'], 6)
 
     def endApp(self):
         global Yes
