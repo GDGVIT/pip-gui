@@ -1,12 +1,13 @@
-from bs4 import BeautifulSoup
 import re
-from pprint import pprint
 import json
+import pkg_resources
+
+from bs4 import BeautifulSoup
 
 genrePattern = re.compile(r'#[\w-]+')
 
 #Source Code File
-file = open('Resource_Files/Package Sources/db.txt')
+file = open(pkg_resources.resource_filename('pipgui', 'Resource_Files/db.txt'))
 src = BeautifulSoup(file.read(), 'lxml')
 
 #List of all genre 'a' tags
@@ -21,9 +22,9 @@ genreTags = list(set([i['href'] for i in aTagList]))
 genres = {i.string:i['href'] for i in aTagList if i.string != None}
 
 #JSON dump files
-gL = open('Resource_Files/Package Sources/genreListFile.json', 'w')
-gT = open('Resource_Files/Package Sources/genreTagFile.json', 'w')
-g = open('Resource_Files/Package Sources/genreFile.json', 'w')
+gL = open(pkg_resources.resource_filename('pipgui', 'Resource_Files/genreListFile.json'), 'w')
+gT = open(pkg_resources.resource_filename('pipgui', 'Resource_Files/genreTagFile.json'), 'w')
+g = open(pkg_resources.resource_filename('pipgui', 'Resource_Files/genreFile.json'), 'w')
 
 json.dump(genreList, gL)
 json.dump(genreTags, gT)

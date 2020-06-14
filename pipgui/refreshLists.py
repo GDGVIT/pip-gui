@@ -9,19 +9,18 @@ class refreshList(object):
 
         print('\nRefreshing Online Package List... ')
         try:
-            from Scraping import pypiList
+            from pipgui.Scraping import pypiList
         except Exception as e:
             print(e)
         print("\nRefreshing Installed Package List...")
         try:
-            from Package_Management import installedList
+            from pipgui.Package_Management import installedList
         except Exception as e:
             # logging.error('Unable to fetch installed packages!')
             print(e)
         print("\nRefreshing Outdated Package List...")
         try:
-            from Package_Management import outdatedList
-
+            from pipgui.Package_Management import outdatedList
         except Exception as e:
             logging.error('Unable to update outdated list!')
 
