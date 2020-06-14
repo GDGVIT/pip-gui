@@ -3,11 +3,11 @@ import pkg_resources
 from subprocess import getoutput
 
 print('Loading outdated Packages...')
-outPackages = getoutput('pip list -o --format=legacy')
-outPackages3 = getoutput('pip3 list -o --format=legacy')
+outPackages = getoutput('pip list -o')
+outPackages3 = getoutput('pip3 list -o')
 
-outdatedPackages = [i.split(' ')[0] for i in outPackages.split('\n')]
-outdatedPackages3 = [i.split(' ')[0] for i in outPackages3.split('\n')]
+outdatedPackages = [i.split(' ')[0] for i in outPackages.split('\n')[2:]]
+outdatedPackages3 = [i.split(' ')[0] for i in outPackages3.split('\n')[2:]]
 
 while 'Retrying' in outdatedPackages:
     outdatedPackages.remove('Retrying')
