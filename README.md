@@ -59,7 +59,7 @@
   
 * Install the package using 
   ```bash
-  pip install pipgui==1.3
+  pip install pipgui
   ```
 
 * Directions to run the package
