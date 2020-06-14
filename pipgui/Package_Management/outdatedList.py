@@ -1,5 +1,6 @@
-from subprocess import getoutput
 import json
+import pkg_resources
+from subprocess import getoutput
 
 print('Loading outdated Packages...')
 outPackages = getoutput('pip list -o --format=legacy')
@@ -15,8 +16,8 @@ while 'Retrying' in outdatedPackages3:
 
 print('Loaded...')
 
-oP = open('Resource_Files/outdatedPackageList.json', 'w')
-oP3 = open('Resource_Files/outdatedPackageList3.json', 'w')
+oP = open(pkg_resources.resource_filename('pipgui', 'Resource_Files/outdatedPackageList.json'), 'w')
+oP3 = open(pkg_resources.resource_filename('pipgui', 'Resource_Files/outdatedPackageList3.json'), 'w')
 
 json.dump(outdatedPackages, oP)
 json.dump(outdatedPackages3, oP3)
