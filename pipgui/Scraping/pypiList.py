@@ -4,7 +4,7 @@ from urllib.request import urlopen
 
 from bs4 import BeautifulSoup
 
-PACKAGE_DIR = '../Resource_Files/Current Packages/'
+PACKAGE_DIR = './Resource_Files/Current Packages/'
 
 source = urlopen('https://pypi.python.org/simple/').read()
 soup = BeautifulSoup(source, 'lxml')

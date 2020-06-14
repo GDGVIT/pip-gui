@@ -20,10 +20,10 @@ except BaseException:
 VERSION = 0
 FILEVERSION = ''
 
-INSTALLED_DIR = 'Resource_Files/Installed Packages/'
-OUTDATED_DIR = 'Resource_Files/Outdated Packages/'
-ASSETS_DIR = 'Resource_Files/Assets/'
-PACKAGE_DIR = 'Resource_Files/Current Packages/'
+INSTALLED_DIR = './Resource_Files/Installed Packages/'
+OUTDATED_DIR = './Resource_Files/Outdated Packages/'
+ASSETS_DIR = './Resource_Files/Assets/'
+PACKAGE_DIR = './Resource_Files/Current Packages/'
 
 Yes = QtWidgets.QMessageBox.Yes
 
