@@ -4,10 +4,12 @@ import pkg_resources
 
 from bs4 import BeautifulSoup
 
+PKG_SOURCE_DIR = '../Resource_Files/Package Sources/'
+
 genrePattern = re.compile(r'#[\w-]+')
 
 #Source Code File
-file = open(pkg_resources.resource_filename('pipgui', 'Resource_Files/db.txt'))
+file = open(pkg_resources.resource_filename('pipgui', PKG_SOURCE_DIR + 'db.txt'))
 src = BeautifulSoup(file.read(), 'lxml')
 
 #List of all genre 'a' tags
@@ -22,9 +24,9 @@ genreTags = list(set([i['href'] for i in aTagList]))
 genres = {i.string:i['href'] for i in aTagList if i.string != None}
 
 #JSON dump files
-gL = open(pkg_resources.resource_filename('pipgui', 'Resource_Files/genreListFile.json'), 'w')
-gT = open(pkg_resources.resource_filename('pipgui', 'Resource_Files/genreTagFile.json'), 'w')
-g = open(pkg_resources.resource_filename('pipgui', 'Resource_Files/genreFile.json'), 'w')
+gL = open(pkg_resources.resource_filename('pipgui', PKG_SOURCE_DIR + 'genreListFile.json'), 'w')
+gT = open(pkg_resources.resource_filename('pipgui', PKG_SOURCE_DIR + 'genreTagFile.json'), 'w')
+g = open(pkg_resources.resource_filename('pipgui', PKG_SOURCE_DIR + 'genreFile.json'), 'w')
 
 json.dump(genreList, gL)
 json.dump(genreTags, gT)

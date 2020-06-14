@@ -52,22 +52,37 @@
 <br>
 
 
-## Instructions to run
+## Instructions to Install package
 
 * Pre-requisites:
-  - Python version > 3
+  - Python version >=3.4
   
 * Install the package using 
-```bash
-pip install pipgui==1.1
-```
+  ```bash
+  pip install pipgui
+  ```
 
 * Directions to run the package
   - Type the following command in the terminal
- ```bash
- pipgui
- ```
+    ```bash
+    pipgui
+    ```
 
+## Running package locally
+
+* Pre-requisities
+  - Python (>=3.4) 
+
+* Install the package locally by using the following commands
+  ``` bash
+    git clone https://github.com/GDGVIT/pip-gui.git
+    cd pipgui
+    pip install -e .
+  ``` 
+* Type the following commmand to run the application
+  ``` bash
+    pipgui
+  ```
 <br>
 
 ## Contributors

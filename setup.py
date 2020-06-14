@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import codecs
 import os
 import re
 
+import codecs
 from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))

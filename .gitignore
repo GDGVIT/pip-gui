@@ -9,3 +9,4 @@ pipgui/test/*
 .vscode
 bin
 
+__pycache__
