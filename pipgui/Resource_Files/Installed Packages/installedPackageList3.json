@@ -1,1 +1,1 @@
-["PyQt5", "PyQt5-sip", "astroid", "beautifulsoup4", "blackmirror", "bumpversion", "colorama", "isort", "lazy-object-proxy", "lxml", "mccabe", "packaging", "pylint", "pyparsing", "six", "soupsieve", "toml", "typed-ast", "virtualenv", "windows-curses", "wrapt"]
+["PyQt5", "PyQt5-sip", "astroid", "beautifulsoup4", "blackmirror", "bumpversion", "colorama", "isort", "lazy-object-proxy", "lxml", "mccabe", "packaging", "pylint", "pyparsing", "requests", "six", "soupsieve", "toml", "typed-ast", "virtualenv", "windows-curses", "wrapt"]
