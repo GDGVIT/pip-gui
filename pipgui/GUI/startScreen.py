@@ -24,10 +24,12 @@ class Ui_mainWindow(object):
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_5.sizePolicy().hasHeightForWidth())
         self.label_5.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
@@ -41,10 +43,12 @@ class Ui_mainWindow(object):
         self.label_5.setObjectName("label_5")
         self.verticalLayout.addWidget(self.label_5)
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_3.sizePolicy().hasHeightForWidth())
         self.label_3.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
@@ -58,10 +62,12 @@ class Ui_mainWindow(object):
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.radioPy2 = QtWidgets.QRadioButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.radioPy2.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.radioPy2.sizePolicy().hasHeightForWidth())
         self.radioPy2.setSizePolicy(sizePolicy)
         self.radioPy2.setChecked(True)
         self.radioPy2.setObjectName("radioPy2")
@@ -70,20 +76,24 @@ class Ui_mainWindow(object):
         self.buttonGroup_2.addButton(self.radioPy2)
         self.horizontalLayout.addWidget(self.radioPy2)
         self.radioPy3 = QtWidgets.QRadioButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.radioPy3.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.radioPy3.sizePolicy().hasHeightForWidth())
         self.radioPy3.setSizePolicy(sizePolicy)
         self.radioPy3.setObjectName("radioPy3")
         self.buttonGroup_2.addButton(self.radioPy3)
         self.horizontalLayout.addWidget(self.radioPy3)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_4.sizePolicy().hasHeightForWidth())
         self.label_4.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
@@ -95,17 +105,21 @@ class Ui_mainWindow(object):
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setContentsMargins(0, 0, -1, -1)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_5.addItem(spacerItem)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.verticalLayout_2.setSizeConstraint(
+            QtWidgets.QLayout.SetDefaultConstraint)
         self.verticalLayout_2.setContentsMargins(-1, -1, -1, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.radioInstall = QtWidgets.QRadioButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.radioInstall.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.radioInstall.sizePolicy().hasHeightForWidth())
         self.radioInstall.setSizePolicy(sizePolicy)
         self.radioInstall.setChecked(True)
         self.radioInstall.setObjectName("radioInstall")
@@ -114,25 +128,30 @@ class Ui_mainWindow(object):
         self.buttonGroup.addButton(self.radioInstall)
         self.verticalLayout_2.addWidget(self.radioInstall)
         self.radioUpdate = QtWidgets.QRadioButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.radioUpdate.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.radioUpdate.sizePolicy().hasHeightForWidth())
         self.radioUpdate.setSizePolicy(sizePolicy)
         self.radioUpdate.setObjectName("radioUpdate")
         self.buttonGroup.addButton(self.radioUpdate)
         self.verticalLayout_2.addWidget(self.radioUpdate)
         self.radioUninstall = QtWidgets.QRadioButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.radioUninstall.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.radioUninstall.sizePolicy().hasHeightForWidth())
         self.radioUninstall.setSizePolicy(sizePolicy)
         self.radioUninstall.setObjectName("radioUninstall")
         self.buttonGroup.addButton(self.radioUninstall)
         self.verticalLayout_2.addWidget(self.radioUninstall)
         self.horizontalLayout_5.addLayout(self.verticalLayout_2)
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem1 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_5.addItem(spacerItem1)
         self.verticalLayout.addLayout(self.horizontalLayout_5)
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
@@ -168,14 +187,20 @@ class Ui_mainWindow(object):
     def retranslateUi(self, mainWindow):
         _translate = QtCore.QCoreApplication.translate
         mainWindow.setWindowTitle(_translate("mainWindow", "PIP GUI"))
-        self.label_5.setText(_translate("mainWindow", "PIPGUI - GUI Based Pip Package Installer"))
-        self.label_3.setText(_translate("mainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Select the Python runtime</span></p></body></html>"))
+        self.label_5.setText(_translate(
+            "mainWindow", "PIPGUI - GUI Based Pip Package Installer"))
+        self.label_3.setText(_translate(
+            "mainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Select the Python runtime</span></p></body></html>"))
         self.radioPy2.setText(_translate("mainWindow", "Python 2"))
         self.radioPy3.setText(_translate("mainWindow", "Python 3"))
-        self.label_4.setText(_translate("mainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Select action</span></p></body></html>"))
-        self.radioInstall.setText(_translate("mainWindow", "Install new packages"))
-        self.radioUpdate.setText(_translate("mainWindow", "Update existing packages"))
-        self.radioUninstall.setText(_translate("mainWindow", "Uninstall existing packages"))
+        self.label_4.setText(_translate(
+            "mainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Select action</span></p></body></html>"))
+        self.radioInstall.setText(_translate(
+            "mainWindow", "Install new packages"))
+        self.radioUpdate.setText(_translate(
+            "mainWindow", "Update existing packages"))
+        self.radioUninstall.setText(_translate(
+            "mainWindow", "Uninstall existing packages"))
         self.btnExit.setText(_translate("mainWindow", "Exit"))
         self.btnNext.setText(_translate("mainWindow", "Next"))
         self.menuFile.setTitle(_translate("mainWindow", "File"))

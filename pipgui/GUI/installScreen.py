@@ -29,10 +29,12 @@ class Ui_Form(object):
         self.horizontalLayout_3.addWidget(self.lineEdit)
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
         self.label_4 = QtWidgets.QLabel(Form)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_4.sizePolicy().hasHeightForWidth())
         self.label_4.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
@@ -47,7 +49,8 @@ class Ui_Form(object):
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.listWidget_3 = QtWidgets.QListWidget(Form)
         self.listWidget_3.setMinimumSize(QtCore.QSize(334, 267))
-        self.listWidget_3.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+        self.listWidget_3.setSelectionMode(
+            QtWidgets.QAbstractItemView.MultiSelection)
         self.listWidget_3.setObjectName("listWidget_3")
         self.horizontalLayout_5.addWidget(self.listWidget_3)
         self.verticalLayout_5 = QtWidgets.QVBoxLayout()
@@ -60,7 +63,8 @@ class Ui_Form(object):
         self.btnBack = QtWidgets.QPushButton(Form)
         self.btnBack.setObjectName("btnBack")
         self.verticalLayout_5.addWidget(self.btnBack)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        spacerItem = QtWidgets.QSpacerItem(
+            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_5.addItem(spacerItem)
         self.horizontalLayout_5.addLayout(self.verticalLayout_5)
         self.verticalLayout_3.addLayout(self.horizontalLayout_5)
@@ -73,6 +77,7 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Install packages"))
         self.label_3.setText(_translate("Form", "Search packages:"))
-        self.label_4.setText(_translate("Form", "Please select the packages you want to install"))
+        self.label_4.setText(_translate(
+            "Form", "Please select the packages you want to install"))
         self.btnInstall.setText(_translate("Form", "Install"))
         self.btnBack.setText(_translate("Form", "Go Back"))
