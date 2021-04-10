@@ -44,7 +44,8 @@ setup(
     ],
     install_requires=[
         "beautifulsoup4",
-        "PyQt5>=5.10, <5.16"
+        "PyQt5>=5.10, <5.16",
+        "wheel_inspect"
     ],
 
 )
