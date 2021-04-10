@@ -17,22 +17,22 @@ class Ui_InstallDialog(object):
         InstallDialog.resize(491, 381)
         InstallDialog.setMinimumSize(QtCore.QSize(491, 381))
         InstallDialog.setMaximumSize(QtCore.QSize(491, 381))
-        self.widget = QtWidgets.QWidget(InstallDialog)
-        self.widget.setGeometry(QtCore.QRect(9, 9, 471, 361))
-        self.widget.setObjectName("widget")
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(InstallDialog)
+        self.layoutWidget.setGeometry(QtCore.QRect(9, 9, 471, 361))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.label_3 = QtWidgets.QLabel(self.widget)
+        self.label_3 = QtWidgets.QLabel(self.layoutWidget)
         self.label_3.setObjectName("label_3")
         self.horizontalLayout_3.addWidget(self.label_3)
-        self.packageInput = QtWidgets.QLineEdit(self.widget)
+        self.packageInput = QtWidgets.QLineEdit(self.layoutWidget)
         self.packageInput.setObjectName("packageInput")
         self.horizontalLayout_3.addWidget(self.packageInput)
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
-        self.label_4 = QtWidgets.QLabel(self.widget)
+        self.label_4 = QtWidgets.QLabel(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(
             QtWidgets.QSizePolicy.Preferred,
             QtWidgets.QSizePolicy.Fixed)
@@ -52,7 +52,7 @@ class Ui_InstallDialog(object):
         self.verticalLayout_3.addWidget(self.label_4)
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.listWidget = QtWidgets.QListWidget(self.widget)
+        self.listWidget = QtWidgets.QListWidget(self.layoutWidget)
         self.listWidget.setMinimumSize(QtCore.QSize(334, 267))
         self.listWidget.setSelectionMode(
             QtWidgets.QAbstractItemView.MultiSelection)
@@ -62,10 +62,10 @@ class Ui_InstallDialog(object):
         self.verticalLayout_5.setContentsMargins(0, -1, -1, -1)
         self.verticalLayout_5.setSpacing(3)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.btnInstall = QtWidgets.QPushButton(self.widget)
+        self.btnInstall = QtWidgets.QPushButton(self.layoutWidget)
         self.btnInstall.setObjectName("btnInstall")
         self.verticalLayout_5.addWidget(self.btnInstall)
-        self.btnBack = QtWidgets.QPushButton(self.widget)
+        self.btnBack = QtWidgets.QPushButton(self.layoutWidget)
         self.btnBack.setObjectName("btnBack")
         self.verticalLayout_5.addWidget(self.btnBack)
         spacerItem = QtWidgets.QSpacerItem(
@@ -79,7 +79,10 @@ class Ui_InstallDialog(object):
 
     def retranslateUi(self, InstallDialog):
         _translate = QtCore.QCoreApplication.translate
-        InstallDialog.setWindowTitle(_translate("InstallDialog", "Dialog"))
+        InstallDialog.setWindowTitle(
+            _translate(
+                "InstallDialog",
+                "Install Packages"))
         self.label_3.setText(_translate("InstallDialog", "Search packages:"))
         self.label_4.setText(
             _translate(
