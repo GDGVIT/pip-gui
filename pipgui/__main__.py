@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+from subprocess import Popen, PIPE
 import json
 import sys
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
+from wheel_inspect import inspect_wheel
 
 # Importing GUIs
 try:
     from pipgui.GUI import startScreen, progressScreen, uninstallScreen, \
-        updateScreen, installScreen
+        updateScreen, installScreen, installFromWheel
 except BaseException:
     from GUI import startScreen, progressScreen, uninstallScreen, \
-        updateScreen, installScreen
+        updateScreen, installScreen, installFromWheel
 
 VERSION = 0
 FILEVERSION = ''
@@ -21,6 +22,15 @@ FILEVERSION = ''
 def EasyDir(folder):
     current_dir = os.path.dirname(os.path.realpath(__file__))
     return os.path.join(current_dir, "Resource_Files", folder)
+
+
+def run(command):
+    process = Popen(command, stdout=PIPE, shell=True)
+    while True:
+        line = process.stdout.readline().decode('utf8').rstrip()
+        if not line:
+            break
+        yield line
 
 
 INSTALLED_DIR = EasyDir('Installed Packages')
@@ -72,7 +82,7 @@ class ProgressWindow(QtWidgets.QMainWindow, progressScreen.Ui_Form):
         super(ProgressWindow, self).__init__()
         self.setupUi(self)
         self.setWindowIcon(
-            QtGui.QIcon(os.path.join(ASSETS_DIR + 'googledev.png')))
+            QtGui.QIcon(os.path.join(ASSETS_DIR, 'googledev.png')))
 
         # QProcess object for external app
         self.process = QtCore.QProcess(self)
@@ -192,6 +202,10 @@ class MainWindow(startScreen.Ui_mainWindow, QtWidgets.QMainWindow):
             self.close()
             self.uninstall = UninstallWindow()
             self.uninstall.show()
+        elif self.radioInstallWhl.isChecked():
+            self.close()
+            self.fromwheel = InstallFromWheel()
+            self.fromwheel.show()
 
     def refreshLists(self):
         self.progWindow = ProgressWindow()
@@ -224,7 +238,7 @@ class UpdateWindow(QtWidgets.QMainWindow, updateScreen.Ui_Form):
         super(UpdateWindow, self).__init__()
         self.setupUi(self)
         self.setWindowIcon(
-            QtGui.QIcon(os.path.join(ASSETS_DIR + 'googledev.png')))
+            QtGui.QIcon(os.path.join(ASSETS_DIR, 'googledev.png')))
         self.outdatedPackages = json.load(open(
             os.path.join(OUTDATED_DIR, ('outdatedPackage' + FILEVERSION) + '.json')))
         self.selectedList = list()
@@ -294,7 +308,7 @@ class UninstallWindow(QtWidgets.QMainWindow, uninstallScreen.Ui_Form):
         super(UninstallWindow, self).__init__()
         self.setupUi(self)
         self.setWindowIcon(
-            QtGui.QIcon(os.path.join(ASSETS_DIR + 'googledev.png')))
+            QtGui.QIcon(os.path.join(ASSETS_DIR, 'googledev.png')))
         self.allPackages = json.load(open(
             os.path.join(INSTALLED_DIR, ('installedPackage' + FILEVERSION) + '.json')))
         self.btnBack.clicked.connect(self.backFn)
@@ -366,7 +380,7 @@ class InstallWindow(QtWidgets.QMainWindow, installScreen.Ui_InstallDialog):
         super(InstallWindow, self).__init__()
         self.setupUi(self)
         self.setWindowIcon(
-            QtGui.QIcon(os.path.join(ASSETS_DIR + 'googledev.png')))
+            QtGui.QIcon(os.path.join(ASSETS_DIR, 'googledev.png')))
         self.offlinePackages = json.load(open(
             os.path.join(INSTALLED_DIR, ('installedPackage' + FILEVERSION) + '.json')))
         self.packages = json.load(
@@ -414,6 +428,148 @@ class InstallWindow(QtWidgets.QMainWindow, installScreen.Ui_InstallDialog):
         self.close()
         self.window = MainWindow()
         self.window.show()
+
+
+class FileThread(QtCore.QThread):
+    '''Thread for get metadata wheel'''
+    finishedSignal = QtCore.pyqtSignal(object)
+
+    def __init__(self, filepath, parent=None):
+        QtCore.QThread.__init__(self, parent)
+        self.filepath = filepath
+
+    def run(self):
+        # Get file metadata
+        data = inspect_wheel(self.filepath)
+        self.finishedSignal.emit(data)
+
+
+class InstallThread(QtCore.QThread):
+    '''Thread for install package from wheel'''
+    InstallSignal = QtCore.pyqtSignal(object)
+
+    def __init__(self, filepath, parent=None):
+        QtCore.QThread.__init__(self, parent)
+        self.filepath = filepath
+
+    def run(self):
+        # Get file metadata
+        for out in run("pip install {}".format(self.filepath)):
+            # self.ConsoleOutput.appendPlainText(out)
+            self.InstallSignal.emit(out)
+
+
+# Install package from wheel window
+class InstallFromWheel(QtWidgets.QMainWindow, installFromWheel.Ui_InstallWHLDialog):
+    '''This is a class for installation from wheel window. First you get details from wheel and after can install it'''
+
+    def __init__(self):
+        super(InstallFromWheel, self).__init__()
+        self.setupUi(self)
+        self.setWindowIcon(
+            QtGui.QIcon(os.path.join(ASSETS_DIR, 'googledev.png')))
+        self.toolButton.clicked.connect(self.GetWheel)
+        self.btnInstall.clicked.connect(self.InstallWheel)
+        self.btnBack.clicked.connect(self.backFn)
+
+        # Hide package name label
+        self.package_name.setHidden(True)
+
+        # Hide console textbox
+        self.ConsoleOutput.setHidden(True)
+
+        # Universal variable for save wheel path
+
+    def backFn(self):
+        self.close()
+        self.window = MainWindow()
+        self.window.show()
+
+    def GetWheel(self):
+        '''Method for show file dialog and search wheel to install'''
+        options = QtWidgets.QFileDialog.Options()
+        options |= QtWidgets.QFileDialog.DontUseNativeDialog
+        filepath, _ = QtWidgets.QFileDialog.getOpenFileName(
+            self, "Open wheel file", "", "Wheel Files (*.whl)", options=options)
+        if filepath:
+            self.wheel = filepath
+            self.toolButton.setEnabled(False)
+            self.package_name.setHidden(False)
+            self.package_name.setText("Loading file metadata...")
+            self.SendFilePath(filepath)
+
+    def SendFilePath(self, filepath):
+        ''' Method for configure FileThread and send wheel path to the class'''
+        self.FileProcess = FileThread(filepath)
+        self.FileProcess.finishedSignal.connect(self.setMetadata)
+        self.FileProcess.start()
+
+    def setMetadata(self, data):
+        '''Method for show metadata info'''
+        self.WheelMetadata.clear()
+        self.WheelMetadata.setHidden(False)
+        self.ConsoleOutput.setHidden(True)
+
+        meta = {}
+
+        meta['Project'] = data.get('project')
+        meta['Filename'] = data.get('filename')
+        meta['Package version'] = data.get('version')
+        meta['Summary'] = data.get('dist_info').get('metadata').get('summary')
+        meta['Author'] = data.get('dist_info').get('metadata').get('author')
+        meta['Author email'] = data.get('dist_info').get(
+            'metadata').get('author_email')
+        meta['Home page'] = data.get('dist_info').get(
+            'metadata').get('home_page')
+        meta['License'] = data.get('dist_info').get('metadata').get('license')
+        meta['Python version'] = data.get('pyver')
+        meta['Required Python version'] = data.get(
+            'dist_info').get('metadata').get('requires_python')
+        meta['Dependencies'] = data.get('derived').get('dependencies')
+
+        self.package_name.setText(meta['Project'])
+
+        for item in meta:
+            if item != 'Project':
+                if meta[item] != None:
+                    if not isinstance(meta[item], list):
+                        node = QtWidgets.QTreeWidgetItem(
+                            self.WheelMetadata, [item])
+                        QtWidgets.QTreeWidgetItem(node, [meta[item]])
+                    else:
+                        node = QtWidgets.QTreeWidgetItem(
+                            self.WheelMetadata, [item])
+                        for x in meta[item]:
+                            QtWidgets.QTreeWidgetItem(node, [x])
+
+        self.WheelMetadata.expandAll()
+        self.btnInstall.setEnabled(True)
+        self.toolButton.setEnabled(True)
+
+    def InstallWheel(self):
+        '''Method for configure InstallThread and send wheel path to the class'''
+        self.ConsoleOutput.clear()
+        self.package_name.setText("Installing wheel...")
+        self.toolButton.setEnabled(False)
+        self.btnInstall.setEnabled(False)
+        self.WheelMetadata.setHidden(True)
+        self.ConsoleOutput.setHidden(False)
+
+        self.InstallProcess = InstallThread(self.wheel)
+        self.InstallProcess.InstallSignal.connect(self.ShowOutput)
+        self.InstallProcess.finished.connect(self.EnableInstallBtn)
+        self.InstallProcess.start()
+
+    def ShowOutput(self, out):
+        '''Method for show console output in each Thread call'''
+        self.ConsoleOutput.appendPlainText(out)
+
+    def EnableInstallBtn(self):
+        '''Configure GUI after finish install process'''
+        self.ConsoleOutput.moveCursor(QtGui.QTextCursor.End)
+        self.toolButton.setEnabled(True)
+        self.btnInstall.setEnabled(True)
+        self.package_name.setText("Process finished, check output")
 
 
 def main():
