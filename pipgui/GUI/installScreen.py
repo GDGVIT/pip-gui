@@ -11,26 +11,31 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(439, 342)
-        self.gridLayout = QtWidgets.QGridLayout(Form)
-        self.gridLayout.setObjectName("gridLayout")
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout()
+class Ui_InstallDialog(object):
+    def setupUi(self, InstallDialog):
+        InstallDialog.setObjectName("InstallDialog")
+        InstallDialog.resize(491, 381)
+        InstallDialog.setMinimumSize(QtCore.QSize(491, 381))
+        InstallDialog.setMaximumSize(QtCore.QSize(491, 381))
+        self.widget = QtWidgets.QWidget(InstallDialog)
+        self.widget.setGeometry(QtCore.QRect(9, 9, 471, 361))
+        self.widget.setObjectName("widget")
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.widget)
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.label_3 = QtWidgets.QLabel(Form)
+        self.label_3 = QtWidgets.QLabel(self.widget)
         self.label_3.setObjectName("label_3")
         self.horizontalLayout_3.addWidget(self.label_3)
-        self.lineEdit = QtWidgets.QLineEdit(Form)
-        self.lineEdit.setObjectName("lineEdit")
-        self.horizontalLayout_3.addWidget(self.lineEdit)
+        self.packageInput = QtWidgets.QLineEdit(self.widget)
+        self.packageInput.setObjectName("packageInput")
+        self.horizontalLayout_3.addWidget(self.packageInput)
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
-        self.label_4 = QtWidgets.QLabel(Form)
+        self.label_4 = QtWidgets.QLabel(self.widget)
         sizePolicy = QtWidgets.QSizePolicy(
-            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+            QtWidgets.QSizePolicy.Preferred,
+            QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(
@@ -47,20 +52,20 @@ class Ui_Form(object):
         self.verticalLayout_3.addWidget(self.label_4)
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.listWidget_3 = QtWidgets.QListWidget(Form)
-        self.listWidget_3.setMinimumSize(QtCore.QSize(334, 267))
-        self.listWidget_3.setSelectionMode(
+        self.listWidget = QtWidgets.QListWidget(self.widget)
+        self.listWidget.setMinimumSize(QtCore.QSize(334, 267))
+        self.listWidget.setSelectionMode(
             QtWidgets.QAbstractItemView.MultiSelection)
-        self.listWidget_3.setObjectName("listWidget_3")
-        self.horizontalLayout_5.addWidget(self.listWidget_3)
+        self.listWidget.setObjectName("listWidget")
+        self.horizontalLayout_5.addWidget(self.listWidget)
         self.verticalLayout_5 = QtWidgets.QVBoxLayout()
         self.verticalLayout_5.setContentsMargins(0, -1, -1, -1)
         self.verticalLayout_5.setSpacing(3)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.btnInstall = QtWidgets.QPushButton(Form)
+        self.btnInstall = QtWidgets.QPushButton(self.widget)
         self.btnInstall.setObjectName("btnInstall")
         self.verticalLayout_5.addWidget(self.btnInstall)
-        self.btnBack = QtWidgets.QPushButton(Form)
+        self.btnBack = QtWidgets.QPushButton(self.widget)
         self.btnBack.setObjectName("btnBack")
         self.verticalLayout_5.addWidget(self.btnBack)
         spacerItem = QtWidgets.QSpacerItem(
@@ -68,16 +73,17 @@ class Ui_Form(object):
         self.verticalLayout_5.addItem(spacerItem)
         self.horizontalLayout_5.addLayout(self.verticalLayout_5)
         self.verticalLayout_3.addLayout(self.horizontalLayout_5)
-        self.gridLayout.addLayout(self.verticalLayout_3, 0, 0, 1, 1)
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi(InstallDialog)
+        QtCore.QMetaObject.connectSlotsByName(InstallDialog)
 
-    def retranslateUi(self, Form):
+    def retranslateUi(self, InstallDialog):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Install packages"))
-        self.label_3.setText(_translate("Form", "Search packages:"))
-        self.label_4.setText(_translate(
-            "Form", "Please select the packages you want to install"))
-        self.btnInstall.setText(_translate("Form", "Install"))
-        self.btnBack.setText(_translate("Form", "Go Back"))
+        InstallDialog.setWindowTitle(_translate("InstallDialog", "Dialog"))
+        self.label_3.setText(_translate("InstallDialog", "Search packages:"))
+        self.label_4.setText(
+            _translate(
+                "InstallDialog",
+                "Please select the packages you want to install"))
+        self.btnInstall.setText(_translate("InstallDialog", "Install"))
+        self.btnBack.setText(_translate("InstallDialog", "Go Back"))

@@ -14,14 +14,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(439, 314)
-        self.gridLayout = QtWidgets.QGridLayout(Form)
-        self.gridLayout.setObjectName("gridLayout")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
+        Form.resize(491, 381)
+        Form.setMinimumSize(QtCore.QSize(491, 381))
+        Form.setMaximumSize(QtCore.QSize(491, 381))
+        self.widget = QtWidgets.QWidget(Form)
+        self.widget.setGeometry(QtCore.QRect(9, 9, 471, 361))
+        self.widget.setObjectName("widget")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.widget)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.label = QtWidgets.QLabel(Form)
+        self.label = QtWidgets.QLabel(self.widget)
         sizePolicy = QtWidgets.QSizePolicy(
-            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+            QtWidgets.QSizePolicy.Preferred,
+            QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(
@@ -37,7 +42,7 @@ class Ui_Form(object):
         self.verticalLayout_2.addWidget(self.label)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.listWidget = QtWidgets.QListWidget(Form)
+        self.listWidget = QtWidgets.QListWidget(self.widget)
         self.listWidget.setMinimumSize(QtCore.QSize(334, 267))
         self.listWidget.setSelectionMode(
             QtWidgets.QAbstractItemView.MultiSelection)
@@ -46,13 +51,13 @@ class Ui_Form(object):
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setSpacing(3)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.btnUpdate = QtWidgets.QPushButton(Form)
+        self.btnUpdate = QtWidgets.QPushButton(self.widget)
         self.btnUpdate.setObjectName("btnUpdate")
         self.verticalLayout.addWidget(self.btnUpdate)
-        self.btnUpdateAll = QtWidgets.QPushButton(Form)
+        self.btnUpdateAll = QtWidgets.QPushButton(self.widget)
         self.btnUpdateAll.setObjectName("btnUpdateAll")
         self.verticalLayout.addWidget(self.btnUpdateAll)
-        self.btnBack = QtWidgets.QPushButton(Form)
+        self.btnBack = QtWidgets.QPushButton(self.widget)
         self.btnBack.setObjectName("btnBack")
         self.verticalLayout.addWidget(self.btnBack)
         spacerItem = QtWidgets.QSpacerItem(
@@ -60,7 +65,6 @@ class Ui_Form(object):
         self.verticalLayout.addItem(spacerItem)
         self.horizontalLayout.addLayout(self.verticalLayout)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
-        self.gridLayout.addLayout(self.verticalLayout_2, 0, 0, 1, 1)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -68,8 +72,10 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Update Packages"))
-        self.label.setText(_translate(
-            "Form", "Please select the packages you want to update"))
+        self.label.setText(
+            _translate(
+                "Form",
+                "Please select the packages you want to update"))
         self.btnUpdate.setText(_translate("Form", "Update"))
         self.btnUpdateAll.setText(_translate("Form", "Update All"))
         self.btnBack.setText(_translate("Form", "Go Back"))
