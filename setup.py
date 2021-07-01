@@ -35,8 +35,7 @@ setup(
         "pipgui",
         "pipgui.*"
     ]),
-    data_files=[('pipgui/Resource_Files', [f for f in copy_dir()]
-                )],
+    data_files=[('pipgui/Resource_Files', [f for f in copy_dir()])],
     python_requires='>=3.4',
     include_package_data=True,
     entry_points={
