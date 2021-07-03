@@ -4,7 +4,8 @@
 import json
 import sys
 import pkg_resources
-import win32gui, win32con
+import win32gui
+import win32con
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
