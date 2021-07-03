@@ -4,8 +4,14 @@
 import json
 import sys
 import pkg_resources
+import win32gui
+import win32con
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
+# hide cmd window
+hide = win32gui.GetForegroundWindow()
+win32gui.ShowWindow(hide, win32con.SW_HIDE)
 
 # Importing GUIs
 try:

@@ -1,3 +1,3 @@
 include pipgui/Resource_Files/*
-Exclude pipgui/Test/*
-Exclude pipgui/UI_files/*
+exclude pipgui/Test/*
+exclude pipgui/UI_files/*
